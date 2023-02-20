@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Repeater, types } from "react-bricks/frontend";
-import { MdArrowLeft, MdArrowRight } from "react-icons/md";
 import Slider from "react-slick";
-import { bgColors } from "./layout/color";
 import Container, { Size } from "./layout/Container";
 import Section, { Border } from "./layout/Section";
-import styled from "styled-components";
 import {
   BackgroundColorsSideEditProps,
   ContainerSizeSideEditProps,
