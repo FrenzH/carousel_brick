@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Repeater, types } from "react-bricks/frontend";
 import Slider from "react-slick";
 import Container, { Size } from "./layout/Container";
-import Section, { Border } from "./layout/Section";
+import Section from "./layout/Section";
 import {
   BackgroundColorsSideEditProps,
   ContainerSizeSideEditProps,
@@ -20,6 +20,7 @@ interface ImageCarouselProps {
   speed: string;
   className: string;
   gap: string;
+  dotsPosition:boolean; //true = up //false = down
 }
 
 const CarouselBrick: types.Brick<ImageCarouselProps> = ({
@@ -30,6 +31,7 @@ const CarouselBrick: types.Brick<ImageCarouselProps> = ({
   isPlaying,
   speed,
   gap,
+  dotsPosition
 }) => {
   const settings = {
     dots: true,
@@ -57,7 +59,25 @@ const CarouselBrick: types.Brick<ImageCarouselProps> = ({
   return (
     <Section bg={bg}>
       <Container size={width}>
-        <style>{`
+
+        {dotsPosition===true? (<style>{`
+
+          .dark div div ul li button:before{
+            color:black
+          }
+          .dark div div ul li.slick-active button:before{
+            color:black
+          }
+          .slick-track{
+            display:flex;
+            gap:${gap};
+          }
+          .slick-dots{
+            bottom: 15px;
+          }
+
+        `}</style>) : (
+          <style>{`
 
         .dark div div ul li button:before{
           color:white
@@ -69,8 +89,12 @@ const CarouselBrick: types.Brick<ImageCarouselProps> = ({
           display:flex;
           gap:${gap};
         }
+        .slick-dots{
+          bottom: -25px;
+        }
         
-    `}</style>
+        `}</style>)}
+        
 
         <Slider {...settings}>
           {/* @ts-ignore */}
@@ -97,6 +121,7 @@ CarouselBrick.schema = {
     isPlaying: "true",
     speed: 3,
     gap: "30px",
+    dotsPosition:false,
 
     singleImage: [
       {
@@ -132,6 +157,12 @@ CarouselBrick.schema = {
     {
       groupName: "carousel",
       props: [
+        {
+          name:"dotsPosition",
+          label:"dots bar up",
+          type:types.SideEditPropType.Boolean,
+
+        },
         {
           name: "slidesToRender",
           label: "slides number",
