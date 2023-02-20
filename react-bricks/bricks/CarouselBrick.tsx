@@ -14,10 +14,6 @@ import blockNames from "./layout/blockNames";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-interface ArrowProps {
-  onClick?: () => void;
-}
-
 interface ImageCarouselProps {
   bg?: { color: string; className: string };
   width?: Size;
