@@ -20,7 +20,6 @@ const ThumbBrickContainer: types.Brick<ThumbBrickContainerProps> = ({
   width,
   colNumber,
 }) => {
-  console.log("qui");
   return (
     <Section bg={bg}>
       <Container size={width} className={`grid grid-cols-${colNumber} gap-3`}>

@@ -19,13 +19,11 @@ const ThumbBrick: types.Brick<ThumbBrickProps> = ({
   return (
     <div className={`p-7 flex border border-slate-200 rounded`}>
       {withIcon ? (
-        <div className={`mr-5`}>
-          <Image
-            propName="icon"
-            alt="logo"
-            imageClassName={`object-contain w-10 h-10`}
-          />
-        </div>
+        <Image
+          propName="icon"
+          alt="logo"
+          imageClassName={`text-left object-contain w-10 h-10 mr-5`}
+        />
       ) : null}
 
       <div className="w-full">
