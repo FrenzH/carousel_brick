@@ -61,6 +61,7 @@ ThumbLink.schema = {
   name: blockNames.ThumbLink,
   label: "thumb link",
   category: "rb-ui website",
+  hideFromAddMenu: true,
   getDefaultProps: () => ({}),
   sideEditProps: [
     {

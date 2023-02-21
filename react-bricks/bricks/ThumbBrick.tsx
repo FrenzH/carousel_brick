@@ -69,6 +69,7 @@ ThumbBrick.schema = {
   name: blockNames.ThumbBrick,
   label: "thumb",
   category: "rb-ui website",
+  hideFromAddMenu: true,
   getDefaultProps: () => ({
     linkText: "type a link text",
   }),
