@@ -12,69 +12,63 @@ import blockNames from "./layout/blockNames";
 interface ThumbBrickContainerProps {
   bg?: { color: string; className: string };
   width?: Size;
+  colNumber: string;
+  href: string;
   withIcon: boolean;
   withTitle: boolean;
-  withLink: boolean;
-  href: string;
-  linkText: string;
-  colNumber: string;
 }
 
-const ThumbBrickContainer: types.Brick<ThumbBrickContainerProps> = ({
+const ThumbLinkContainer: types.Brick<ThumbBrickContainerProps> = ({
   bg,
   width,
+  href,
   withIcon,
   withTitle,
-  withLink,
-  linkText,
-  href,
   colNumber,
 }) => {
   return (
     <Section bg={bg}>
       <Container size={width} className={`grid grid-cols-${colNumber} gap-y-3`}>
         <Repeater
-          propName="thumb-brick"
+          propName="thumb-link"
           renderItemWrapper={(item) => <div className="">{item}</div>}
-          itemProps={{
-            width: width,
-            withIcon: withIcon,
-            withLink: withLink,
-            withTitle: withTitle,
-            href: href,
-            linkText: linkText,
-          }}
+          itemProps={{ href: href, withIcon: withIcon, withTitle: withTitle }}
         />
       </Container>
     </Section>
   );
 };
 
-ThumbBrickContainer.schema = {
-  name: blockNames.ThumbBrickContainer,
-  label: "thumb container",
+ThumbLinkContainer.schema = {
+  name: blockNames.ThumbLinkContainer,
+  label: "thumb link container",
   category: "rb-ui website",
   getDefaultProps: () => ({
     href: "",
-    linkText: "type a text...",
+    colNumber: 2,
     withIcon: true,
     withTitle: true,
-    withLink: true,
-    colNumber: 2,
   }),
   repeaterItems: [
     {
-      name: "thumb-brick",
-      itemType: blockNames.ThumbBrick,
-      itemLabel: "ThumbBrick",
+      name: "thumb-link",
+      itemType: blockNames.ThumbLink,
+      itemLabel: "ThumbLink",
       min: 0,
       max: 6,
     },
   ],
   sideEditProps: [
     {
-      groupName: "thumb-brick",
+      groupName: "thumb-link",
       props: [
+        {
+          name: "href",
+          label: "link",
+          type: types.SideEditPropType.Text,
+          validate: (value) =>
+            value && value.length > 10 && String(value).startsWith("https://"),
+        },
         {
           name: "withIcon",
           label: "with icon ?",
@@ -82,20 +76,8 @@ ThumbBrickContainer.schema = {
         },
         {
           name: "withTitle",
-          label: "with title ?",
+          label: "With Title",
           type: types.SideEditPropType.Boolean,
-        },
-        {
-          name: "withLink",
-          label: "with link ?",
-          type: types.SideEditPropType.Boolean,
-        },
-        {
-          name: "href",
-          label: "link",
-          type: types.SideEditPropType.Text,
-          validate: (value) =>
-            value && value.length > 10 && String(value).startsWith("https://"),
         },
       ],
     },
@@ -122,4 +104,4 @@ ThumbBrickContainer.schema = {
   ],
 };
 
-export default ThumbBrickContainer;
+export default ThumbLinkContainer;

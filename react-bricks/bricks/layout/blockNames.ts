@@ -44,6 +44,9 @@ enum blockNames {
   TableRow = "table-row",
   TableCell = "table-cell",
   ThumbBrick = "thumb-brick",
+  ThumbBrickContainer = "thumb-brick-container",
+  ThumbLink = "thumb-link",
+  ThumbLinkContainer = "thumb-link-container",
 }
 
 export default blockNames;
