@@ -92,7 +92,7 @@ ThumbLink.schema = {
       props: [
         {
           name: "withTitle",
-          label: "with title?",
+          label: "with title",
           type: types.SideEditPropType.Boolean,
         },
       ],
