@@ -19,6 +19,7 @@ interface ThumbBrickProps {
   linkProps: { href: string; target: string; className: string };
   iconSize: string;
   iconPosition: string;
+  linkText:string;
 }
 
 const ThumbBrick: types.Brick<ThumbBrickProps> = ({
@@ -30,6 +31,7 @@ const ThumbBrick: types.Brick<ThumbBrickProps> = ({
   linkProps,
   iconSize,
   iconPosition,
+  linkText
 }) => {
   console.log(iconSize, "ciao");
   return (
@@ -68,11 +70,13 @@ const ThumbBrick: types.Brick<ThumbBrickProps> = ({
                 propName="link"
                 href={linkProps?.href}
                 className="inline-block text-sky-500 hover:text-sky-600 hover:-translate-y-px transition-all ease-out duration-150"
-                renderLink={(props) => (
-                  <div className="text-xs">{props.children}</div>
-                )}
+                renderLink={(props) => <div className="">{props.children}</div>}
+              
               >
-                mvfnv <FaArrowRight />
+              {linkText}
+                
+              
+              
               </Link>
             </div>
           ) : null}
@@ -162,11 +166,10 @@ ThumbBrick.schema = {
             value && value.length > 10 && String(value).startsWith("https://"),
         },
         {
-          name: "",
-          label: "link",
+          name: "linkText",
+          label: "link text",
           type: types.SideEditPropType.Text,
-          validate: (value) =>
-            value && value.length > 10 && String(value).startsWith("https://"),
+         
         },
       ],
     },
