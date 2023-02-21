@@ -19,7 +19,7 @@ const ThumbLink: types.Brick<ThumbLinkProps> = ({
       <Link
         propName="link"
         href={href}
-        className="flex flex-1 cursor-pointer group border border-slate-200 p-4 rounded hover:-translate-y-px hover:border-sky-500 hover:shadow-md transition-all ease-out duration-150"
+        className="flex flex-1 cursor-pointer group border border-slate-200 p-4 rounded hover:-translate-y-px hover:border-sky-500 hover:shadow-lg transition-all ease-out duration-150"
       >
         {withIcon ? (
           <Image
