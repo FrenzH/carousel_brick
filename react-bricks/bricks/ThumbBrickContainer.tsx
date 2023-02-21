@@ -12,38 +12,22 @@ import blockNames from "./layout/blockNames";
 interface ThumbBrickContainerProps {
   bg?: { color: string; className: string };
   width?: Size;
-  withIcon: boolean;
-  withTitle: boolean;
-  withLink: boolean;
-  href: string;
-  linkText: string;
   colNumber: string;
 }
 
 const ThumbBrickContainer: types.Brick<ThumbBrickContainerProps> = ({
   bg,
   width,
-  withIcon,
-  withTitle,
-  withLink,
-  linkText,
-  href,
   colNumber,
 }) => {
+  console.log("qui");
   return (
     <Section bg={bg}>
-      <Container size={width} className={`grid grid-cols-${colNumber} gap-y-3`}>
+      <Container size={width} className={`grid grid-cols-${colNumber} gap-3`}>
         <Repeater
           propName="thumb-brick"
           renderItemWrapper={(item) => <div className="">{item}</div>}
-          itemProps={{
-            width: width,
-            withIcon: withIcon,
-            withLink: withLink,
-            withTitle: withTitle,
-            href: href,
-            linkText: linkText,
-          }}
+          itemProps={{}}
         />
       </Container>
     </Section>
@@ -55,11 +39,6 @@ ThumbBrickContainer.schema = {
   label: "thumb container",
   category: "rb-ui website",
   getDefaultProps: () => ({
-    href: "",
-    linkText: "type a text...",
-    withIcon: true,
-    withTitle: true,
-    withLink: true,
     colNumber: 2,
   }),
   repeaterItems: [
@@ -72,33 +51,6 @@ ThumbBrickContainer.schema = {
     },
   ],
   sideEditProps: [
-    {
-      groupName: "thumb-brick",
-      props: [
-        {
-          name: "withIcon",
-          label: "with icon ?",
-          type: types.SideEditPropType.Boolean,
-        },
-        {
-          name: "withTitle",
-          label: "with title ?",
-          type: types.SideEditPropType.Boolean,
-        },
-        {
-          name: "withLink",
-          label: "with link ?",
-          type: types.SideEditPropType.Boolean,
-        },
-        {
-          name: "href",
-          label: "link",
-          type: types.SideEditPropType.Text,
-          validate: (value) =>
-            value && value.length > 10 && String(value).startsWith("https://"),
-        },
-      ],
-    },
     {
       groupName: "layout",
       props: [

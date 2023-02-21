@@ -1,8 +1,6 @@
 import React from "react";
 import { types } from "react-bricks/frontend";
 import { RichText, Text, Image, Link } from "react-bricks/frontend";
-import Container from "./layout/Container";
-
 import blockNames from "./layout/blockNames";
 
 interface ThumbLinkProps {
@@ -17,11 +15,11 @@ const ThumbLink: types.Brick<ThumbLinkProps> = ({
   withTitle,
 }) => {
   return (
-    <Container>
+    <div>
       <Link
         propName="link"
         href={href}
-        className="flex cursor-pointer group border border-slate-200 p-4 rounded hover:-translate-y-px hover:border-sky-500 hover:shadow-md transition-all ease-out duration-150"
+        className="flex flex-1 cursor-pointer group border border-slate-200 p-4 rounded hover:-translate-y-px hover:border-sky-500 hover:shadow-md transition-all ease-out duration-150"
       >
         {withIcon ? (
           <Image
@@ -35,7 +33,7 @@ const ThumbLink: types.Brick<ThumbLinkProps> = ({
           {withTitle ? (
             <Text
               renderBlock={(props) => (
-                <div className="font-bold mb-1 group-hover:text-sky-500  transition-all ease-out duration-150">
+                <div className="font-bold group-hover:text-sky-500  transition-all ease-out duration-150">
                   {props.children}
                 </div>
               )}
@@ -55,7 +53,7 @@ const ThumbLink: types.Brick<ThumbLinkProps> = ({
           />
         </div>
       </Link>
-    </Container>
+    </div>
   );
 };
 
@@ -63,10 +61,7 @@ ThumbLink.schema = {
   name: blockNames.ThumbLink,
   label: "thumb link",
   category: "rb-ui website",
-  getDefaultProps: () => ({
-    title: "type a title",
-  }),
-  repeaterItems: [],
+  getDefaultProps: () => ({}),
   sideEditProps: [
     {
       groupName: "icon",

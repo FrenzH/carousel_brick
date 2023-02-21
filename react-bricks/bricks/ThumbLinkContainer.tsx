@@ -13,26 +13,19 @@ interface ThumbBrickContainerProps {
   bg?: { color: string; className: string };
   width?: Size;
   colNumber: string;
-  href: string;
-  withIcon: boolean;
-  withTitle: boolean;
 }
 
 const ThumbLinkContainer: types.Brick<ThumbBrickContainerProps> = ({
   bg,
   width,
-  href,
-  withIcon,
-  withTitle,
   colNumber,
 }) => {
   return (
-    <Section bg={bg}>
-      <Container size={width} className={`grid grid-cols-${colNumber} gap-y-3`}>
+    <Section bg={bg} className={`pt-1`}>
+      <Container size={width} className={`grid grid-cols-${colNumber} gap-3`}>
         <Repeater
-          propName="thumb-link"
-          renderItemWrapper={(item) => <div className="">{item}</div>}
-          itemProps={{ href: href, withIcon: withIcon, withTitle: withTitle }}
+          propName="thumbLink"
+          renderItemWrapper={(items) => <div>{items}</div>}
         />
       </Container>
     </Section>
@@ -44,14 +37,11 @@ ThumbLinkContainer.schema = {
   label: "thumb link container",
   category: "rb-ui website",
   getDefaultProps: () => ({
-    href: "",
     colNumber: 2,
-    withIcon: true,
-    withTitle: true,
   }),
   repeaterItems: [
     {
-      name: "thumb-link",
+      name: "thumbLink",
       itemType: blockNames.ThumbLink,
       itemLabel: "ThumbLink",
       min: 0,
@@ -59,28 +49,6 @@ ThumbLinkContainer.schema = {
     },
   ],
   sideEditProps: [
-    {
-      groupName: "thumb-link",
-      props: [
-        {
-          name: "href",
-          label: "link",
-          type: types.SideEditPropType.Text,
-          validate: (value) =>
-            value && value.length > 10 && String(value).startsWith("https://"),
-        },
-        {
-          name: "withIcon",
-          label: "with icon ?",
-          type: types.SideEditPropType.Boolean,
-        },
-        {
-          name: "withTitle",
-          label: "With Title",
-          type: types.SideEditPropType.Boolean,
-        },
-      ],
-    },
     {
       groupName: "layout",
       props: [

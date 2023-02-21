@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Repeater, types } from "react-bricks/frontend";
 import Slider from "react-slick";
 import Container, { Size } from "./layout/Container";
-import Section, { Border } from "./layout/Section";
+import Section from "./layout/Section";
 import {
   BackgroundColorsSideEditProps,
   ContainerSizeSideEditProps,

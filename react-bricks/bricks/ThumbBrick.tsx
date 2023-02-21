@@ -1,15 +1,9 @@
 import React from "react";
 import { types } from "react-bricks/frontend";
 import { RichText, Text, Image, Link } from "react-bricks/frontend";
-import Container, { Size } from "./layout/Container";
-import {
-  BackgroundColorsSideEditProps,
-  ContainerSizeSideEditProps,
-} from "./layout/LayoutSideProps";
 import blockNames from "./layout/blockNames";
 
 interface ThumbBrickProps {
-  width?: Size;
   withIcon: boolean;
   withTitle: boolean;
   withLink: boolean;
@@ -17,16 +11,15 @@ interface ThumbBrickProps {
 }
 
 const ThumbBrick: types.Brick<ThumbBrickProps> = ({
-  width,
   withIcon,
   withTitle,
   withLink,
   href,
 }) => {
   return (
-    <Container size={width} className={`flex border border-slate-200 rounded`}>
+    <div className={`p-7 flex border border-slate-200 rounded`}>
       {withIcon ? (
-        <div className={`flex mr-5`}>
+        <div className={`mr-5`}>
           <Image
             propName="icon"
             alt="logo"
@@ -39,7 +32,7 @@ const ThumbBrick: types.Brick<ThumbBrickProps> = ({
         {withTitle ? (
           <Text
             renderBlock={(props) => (
-              <div className="text-base font-bold mb-1">{props.children}</div>
+              <div className="font-bold mb-1">{props.children}</div>
             )}
             placeholder="type a title..."
             propName="title"
@@ -54,12 +47,12 @@ const ThumbBrick: types.Brick<ThumbBrickProps> = ({
           placeholder="Role"
           propName="text"
         />
-        <div className="w-full">
+        <div className="w-full mt-2 flex">
           {withLink ? (
             <Link
               propName="link"
               href={href}
-              className="cursor-pointer inline-block text-sky-500 hover:text-sky-600 hover:-translate-y-px transition-all ease-out duration-150"
+              className="w-full cursor-pointer inline-block text-sky-500 hover:text-sky-600 hover:-translate-y-px transition-all ease-out duration-150"
             >
               <Text
                 renderBlock={(props) => <div>{props.children}</div>}
@@ -70,7 +63,7 @@ const ThumbBrick: types.Brick<ThumbBrickProps> = ({
           ) : null}
         </div>
       </div>
-    </Container>
+    </div>
   );
 };
 
@@ -79,20 +72,9 @@ ThumbBrick.schema = {
   label: "thumb",
   category: "rb-ui website",
   getDefaultProps: () => ({
-    href: "",
-    linkText: "type a text...",
-    withIcon: true,
-    withTitle: true,
-    withLink: true,
-    width: "lg",
+    linkText: "type a link text",
   }),
-  repeaterItems: [],
   sideEditProps: [
-    {
-      groupName: "Layout",
-      defaultOpen: true,
-      props: [BackgroundColorsSideEditProps, ContainerSizeSideEditProps],
-    },
     {
       groupName: "thumb",
       props: [
