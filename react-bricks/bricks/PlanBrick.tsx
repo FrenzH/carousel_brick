@@ -11,7 +11,7 @@ interface PlanBrickProps {
 const PlanBrick: types.Brick<PlanBrickProps> = ({ extraTag, href }) => {
   return (
     <div>
-      <div className="m-4 p-5 border border-t-4 border-t-cyan-500 rounded flex-1 min-w-[250px] max-w-[350px] text-center flex flex-col md:w-[270px] lg:w-[300px]">
+      <div className="m-4 p-5 border border-t-4 border-t-cyan-500 rounded flex-1 min-w-[250px] max-w-[350px] text-center flex flex-col sm:w-[250px] md:w-[270px] lg:w-[300px]">
         <div className="h-6 self-center">
           {extraTag ? (
             <Text
