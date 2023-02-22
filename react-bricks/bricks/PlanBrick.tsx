@@ -11,8 +11,8 @@ interface PlanBrickProps {
 const PlanBrick: types.Brick<PlanBrickProps> = ({ extraTag, href }) => {
   return (
     <div>
-      <div className="m-4 p-5 border border-t-4 border-t-cyan-500 rounded flex-1 min-w-[250px] text-center flex flex-col">
-        <div className="h-6 self-center">
+      <div className="m-4 p-5 border border-t-4 border-t-cyan-500 rounded flex-1 min-w-[250px] max-w-[300px] text-center flex flex-col">
+        <div className="self-center">
           {extraTag ? (
             <Text
               renderBlock={(props) => (
@@ -25,7 +25,7 @@ const PlanBrick: types.Brick<PlanBrickProps> = ({ extraTag, href }) => {
             />
           ) : null}
         </div>
-        <div className="h-28 mb-3">
+        <div className=" mb-2">
           <Text
             renderBlock={(props) => (
               <h2 className="text-2xl text-cyan-500 font-bold mb-4">
@@ -40,11 +40,11 @@ const PlanBrick: types.Brick<PlanBrickProps> = ({ extraTag, href }) => {
             renderBlock={(props) => (
               <p className="text-lg text-gray-600">{props.children}</p>
             )}
-            placeholder="Role"
+            placeholder="paragraph"
             propName="planParagraph"
           />
         </div>
-        <div className="h-24 mb-2 flex flex-col justify-center gap-y-1.5">
+        <div className="text-center gap-y-1.5">
           <Text
             renderBlock={(props) => (
               <strong className="block text-3xl font-bold pt-4">
@@ -57,7 +57,7 @@ const PlanBrick: types.Brick<PlanBrickProps> = ({ extraTag, href }) => {
 
           <Text
             renderBlock={(props) => (
-              <p className="text-gray-500">{props.children}</p>
+              <p className="text-gray-500 mb-2">{props.children}</p>
             )}
             placeholder="type a title..."
             propName="planDuration"
@@ -82,7 +82,7 @@ const PlanBrick: types.Brick<PlanBrickProps> = ({ extraTag, href }) => {
             propName="featuresTitle"
           />
 
-          <ul className="text-lg text-gray-700 text-left">
+          <ul className="text-lg text-gray-700 text-left mt-3">
             <Repeater
               propName="plan-feature"
               renderItemWrapper={(items) => (
@@ -101,7 +101,7 @@ PlanBrick.schema = {
   name: blockNames.PlanBrick,
   label: "plan brick",
   category: "rb-ui website",
-  hideFromAddMenu: false,
+  hideFromAddMenu: true,
   getDefaultProps: () => ({
     planExtraTag: "MOST POPULAR",
     extraTag: false,

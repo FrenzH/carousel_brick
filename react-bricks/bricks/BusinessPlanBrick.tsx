@@ -12,21 +12,21 @@ import blockNames from "./layout/blockNames";
 interface BusinessPlanBrickProps {
   bg?: { color: string; className: string };
   width?: Size;
-  colNumber: string;
 }
 
 const BusinessPlanBrick: types.Brick<BusinessPlanBrickProps> = ({
   bg,
   width,
-  colNumber,
 }) => {
   return (
     <Section bg={bg}>
-      <Container size={width} className={`grid grid-cols-${colNumber} gap-3`}>
-        <Repeater
-          propName="plan-brick"
-          renderItemWrapper={(items) => <div>{items}</div>}
-        />
+      <Container size={width}>
+        <div className={`flex flex-1 grow flex-wrap justify-center`}>
+          <Repeater
+            propName="plan-brick"
+            renderItemWrapper={(items) => <div>{items}</div>}
+          />
+        </div>
       </Container>
     </Section>
   );
@@ -51,23 +51,7 @@ BusinessPlanBrick.schema = {
   sideEditProps: [
     {
       groupName: "layout",
-      props: [
-        BackgroundColorsSideEditProps,
-        ContainerSizeSideEditProps,
-        {
-          name: "colNumber",
-          label: "column number",
-          type: types.SideEditPropType.Select,
-          selectOptions: {
-            display: types.OptionsDisplay.Select,
-            options: [
-              { value: 1, label: "1" },
-              { value: 2, label: "2" },
-              { value: 3, label: "3" },
-            ],
-          },
-        },
-      ],
+      props: [BackgroundColorsSideEditProps, ContainerSizeSideEditProps],
     },
   ],
 };
