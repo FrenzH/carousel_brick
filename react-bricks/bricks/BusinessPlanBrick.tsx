@@ -12,19 +12,17 @@ import blockNames from "./layout/blockNames";
 interface BusinessPlanBrickProps {
   bg?: { color: string; className: string };
   width?: Size;
-  colNumber: string;
 }
 
 const BusinessPlanBrick: types.Brick<BusinessPlanBrickProps> = ({
   bg,
   width,
-  colNumber,
 }) => {
   //auto-cols-min grid-flow-dense xl:grid-cols-${colNumber} 2xl:grid-cols-${colNumber} lg:grid-cols-${colNumber} md:grid-cols-2 sm:grid-cols-1
   return (
     <Section bg={bg}>
       <Container size={width}>
-        <div className={`grid grid-cols-${colNumber} auto-cols-min `}>
+        <div className={`flex flex-1 grow flex-wrap justify-center`}>
           <Repeater
             propName="plan-brick"
             renderItemWrapper={(items) => <div>{items}</div>}
@@ -67,7 +65,6 @@ BusinessPlanBrick.schema = {
               { value: 1, label: "1" },
               { value: 2, label: "2" },
               { value: 3, label: "3" },
-              { value: 4, label: "4" },
             ],
           },
         },
