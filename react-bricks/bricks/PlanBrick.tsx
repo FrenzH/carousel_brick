@@ -1,6 +1,6 @@
 import React from "react";
 import { types } from "react-bricks/frontend";
-import { RichText, Text, Image, Link, Repeater } from "react-bricks/frontend";
+import { RichText, Text, Link, Repeater } from "react-bricks/frontend";
 import blockNames from "./layout/blockNames";
 
 interface PlanBrickProps {
