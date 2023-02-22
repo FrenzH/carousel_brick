@@ -6,9 +6,16 @@ import blockNames from "./layout/blockNames";
 interface PlanBrickProps {
   extraTag: boolean;
   href: string;
+  hrefExtra: string;
+  extraButton: boolean;
 }
 
-const PlanBrick: types.Brick<PlanBrickProps> = ({ extraTag, href }) => {
+const PlanBrick: types.Brick<PlanBrickProps> = ({
+  extraTag,
+  href,
+  hrefExtra,
+  extraButton,
+}) => {
   return (
     <div>
       <div className="m-4 p-5 border border-t-4 border-t-cyan-500 rounded flex-1 min-w-[250px] max-w-[350px] text-center flex flex-col sm:w-[250px] md:w-[270px] lg:w-[300px]">
@@ -66,7 +73,9 @@ const PlanBrick: types.Brick<PlanBrickProps> = ({ extraTag, href }) => {
         <Link
           propName="planLinkButton"
           href={href}
-          className="cursor-pointer block mb-8 text-center text-lg py-2 px-3 sm:px-5 rounded text-cyan-600 hover:text-white font-medium border-2 border-cyan-500 hover:bg-cyan-500 hover:shadow-lg transition duration-200"
+          className={`cursor-pointer block ${
+            extraButton ? `mb-4` : `mb-8`
+          } text-center text-lg py-2 px-3 sm:px-5 rounded text-cyan-600 hover:text-white font-medium border-2 border-cyan-500 hover:bg-cyan-500 hover:shadow-lg transition duration-200`}
         >
           <Text
             renderBlock={(props) => <div>{props.children}</div>}
@@ -74,6 +83,19 @@ const PlanBrick: types.Brick<PlanBrickProps> = ({ extraTag, href }) => {
             propName="linkText"
           />
         </Link>
+        {extraButton ? (
+          <Link
+            propName="extraButtonLink"
+            href={hrefExtra}
+            className="cursor-pointer block mb-8 text-center text-sm py-1 px-3 sm:px-5 rounded text-white bg-purple-500 hover:bg-indigo-500 font-medium hover:shadow-lg transition duration-200"
+          >
+            <Text
+              renderBlock={(props) => <div>{props.children}</div>}
+              placeholder="type a link text..."
+              propName="linkText"
+            />
+          </Link>
+        ) : null}
         <div className="flex-1 flex flex-col ">
           <Text
             renderBlock={(props) => (
@@ -115,6 +137,7 @@ PlanBrick.schema = {
     href: "",
     linkText: "get started",
     featuresTitle: "Everything in Community, plus:",
+    extraButton: false,
   }),
   repeaterItems: [
     {
@@ -137,6 +160,18 @@ PlanBrick.schema = {
         {
           name: "href",
           label: "redirect plan link",
+          type: types.SideEditPropType.Text,
+          validate: (value) =>
+            value && value.length > 10 && String(value).startsWith("https://"),
+        },
+        {
+          name: "extraButton",
+          label: "with extra button",
+          type: types.SideEditPropType.Boolean,
+        },
+        {
+          name: "hrefExtra",
+          label: "redirect extra button link",
           type: types.SideEditPropType.Text,
           validate: (value) =>
             value && value.length > 10 && String(value).startsWith("https://"),
