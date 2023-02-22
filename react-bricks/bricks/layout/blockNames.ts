@@ -47,6 +47,9 @@ enum blockNames {
   ThumbBrickContainer = "thumb-brick-container",
   ThumbLink = "thumb-link",
   ThumbLinkContainer = "thumb-link-container",
+  PlanBrick = "plan-brick",
+  BusinessPlanBrick = "business-plan",
+  PlanFeatureBrick = "plan-feature",
 }
 
 export default blockNames;
