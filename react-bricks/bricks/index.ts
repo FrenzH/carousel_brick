@@ -7,8 +7,9 @@ import ThumbBrickContainer from "./ThumbBrickContainer";
 import ThumbLink from "./ThumbLink";
 import ThumbLinkContainer from "./ThumbLinkContainer";
 import PlanBrick from "./PlanBrick";
-import BusinessPlanBrick from "./BusinessPlanBrick";
+import BusinessPlan4Brick from "./BusinessPlan4Brick";
 import PlanFeatureBrick from "./PlanFeatureBrick";
+import BusinessPlan3Brick from "./BusinessPlan3Brick";
 
 const bricks: types.Brick<any>[] = [
   ...website, // React Bricks UI
@@ -19,8 +20,9 @@ const bricks: types.Brick<any>[] = [
   ThumbLink,
   ThumbLinkContainer,
   PlanBrick,
-  BusinessPlanBrick,
+  BusinessPlan4Brick,
   PlanFeatureBrick,
+  BusinessPlan3Brick,
   // Example custom brick
   // Put here your other bricks...
 ];

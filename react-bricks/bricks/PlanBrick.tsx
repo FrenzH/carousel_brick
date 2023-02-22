@@ -11,8 +11,8 @@ interface PlanBrickProps {
 const PlanBrick: types.Brick<PlanBrickProps> = ({ extraTag, href }) => {
   return (
     <div>
-      <div className="m-4 p-5 border border-t-4 border-t-cyan-500 rounded flex-1 min-w-[250px] max-w-[300px] text-center flex flex-col">
-        <div className="self-center">
+      <div className="m-4 p-5 border border-t-4 border-t-cyan-500 rounded flex-1 min-w-[250px] max-w-[350px] text-center flex flex-col md:w-[270px] lg:w-[300px]">
+        <div className="h-6 self-center">
           {extraTag ? (
             <Text
               renderBlock={(props) => (
@@ -25,7 +25,7 @@ const PlanBrick: types.Brick<PlanBrickProps> = ({ extraTag, href }) => {
             />
           ) : null}
         </div>
-        <div className=" mb-2">
+        <div className="">
           <Text
             renderBlock={(props) => (
               <h2 className="text-2xl text-cyan-500 font-bold mb-4">
@@ -44,7 +44,7 @@ const PlanBrick: types.Brick<PlanBrickProps> = ({ extraTag, href }) => {
             propName="planParagraph"
           />
         </div>
-        <div className="text-center gap-y-1.5">
+        <div className="text-center mb-4">
           <Text
             renderBlock={(props) => (
               <strong className="block text-3xl font-bold pt-4">
@@ -62,22 +62,25 @@ const PlanBrick: types.Brick<PlanBrickProps> = ({ extraTag, href }) => {
             placeholder="type a title..."
             propName="planDuration"
           />
-
-          <Link
-            propName="planLinkButton"
-            href={href}
-            className="cursor-pointer block mb-8 text-center text-lg py-2 px-3 sm:px-5 rounded text-cyan-600 hover:text-white font-medium border-2 border-cyan-500 hover:bg-cyan-500 hover:shadow-lg transition duration-200"
-          >
-            <Text
-              renderBlock={(props) => <div>{props.children}</div>}
-              placeholder="type a link text..."
-              propName="linkText"
-            />
-          </Link>
         </div>
-        <div className="flex-1 flex flex-col mt-3">
+        <Link
+          propName="planLinkButton"
+          href={href}
+          className="cursor-pointer block mb-8 text-center text-lg py-2 px-3 sm:px-5 rounded text-cyan-600 hover:text-white font-medium border-2 border-cyan-500 hover:bg-cyan-500 hover:shadow-lg transition duration-200"
+        >
           <Text
-            renderBlock={(props) => <p>{props.children}</p>}
+            renderBlock={(props) => <div>{props.children}</div>}
+            placeholder="type a link text..."
+            propName="linkText"
+          />
+        </Link>
+        <div className="flex-1 flex flex-col ">
+          <Text
+            renderBlock={(props) => (
+              <p className="text-sm text-gray-500 text-left mb-4">
+                {props.children}
+              </p>
+            )}
             placeholder="type a text"
             propName="featuresTitle"
           />

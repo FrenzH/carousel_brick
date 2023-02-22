@@ -9,20 +9,22 @@ import {
 } from "./layout/LayoutSideProps";
 import blockNames from "./layout/blockNames";
 
-interface BusinessPlanBrickProps {
+interface BusinessPlan3BrickProps {
   bg?: { color: string; className: string };
   width?: Size;
 }
 
-const BusinessPlanBrick: types.Brick<BusinessPlanBrickProps> = ({
+const BusinessPlan3Brick: types.Brick<BusinessPlan3BrickProps> = ({
   bg,
   width,
 }) => {
   //auto-cols-min grid-flow-dense xl:grid-cols-${colNumber} 2xl:grid-cols-${colNumber} lg:grid-cols-${colNumber} md:grid-cols-2 sm:grid-cols-1
   return (
     <Section bg={bg}>
-      <Container size={width}>
-        <div className={`flex flex-1 grow flex-wrap justify-center`}>
+      <Container>
+        <div
+          className={`flex flex-1 grow flex-wrap justify-center 2xl:flex-nowrap xl:flex-nowrap lg:flex-nowrap`}
+        >
           <Repeater
             propName="plan-brick"
             renderItemWrapper={(items) => <div>{items}</div>}
@@ -33,44 +35,26 @@ const BusinessPlanBrick: types.Brick<BusinessPlanBrickProps> = ({
   );
 };
 
-BusinessPlanBrick.schema = {
-  name: blockNames.BusinessPlanBrick,
-  label: "business plan",
+BusinessPlan3Brick.schema = {
+  name: blockNames.BusinessPlan3Brick,
+  label: "3 business plan",
   category: "rb-ui website",
-  getDefaultProps: () => ({
-    colNumber: 2,
-  }),
+  getDefaultProps: () => ({}),
   repeaterItems: [
     {
       name: "plan-brick",
       itemType: blockNames.PlanBrick,
       itemLabel: "plan brick",
-      min: 0,
-      max: 6,
+      min: 3,
+      max: 3,
     },
   ],
   sideEditProps: [
     {
       groupName: "layout",
-      props: [
-        BackgroundColorsSideEditProps,
-        ContainerSizeSideEditProps,
-        {
-          name: "colNumber",
-          label: "column number",
-          type: types.SideEditPropType.Select,
-          selectOptions: {
-            display: types.OptionsDisplay.Select,
-            options: [
-              { value: 1, label: "1" },
-              { value: 2, label: "2" },
-              { value: 3, label: "3" },
-            ],
-          },
-        },
-      ],
+      props: [BackgroundColorsSideEditProps, ContainerSizeSideEditProps],
     },
   ],
 };
 
-export default BusinessPlanBrick;
+export default BusinessPlan3Brick;
