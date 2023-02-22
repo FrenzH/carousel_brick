@@ -10,9 +10,9 @@ interface PlanBrickProps {
 
 const PlanBrick: types.Brick<PlanBrickProps> = ({ extraTag, href }) => {
   return (
-    <div>
-      <div className="m-4 p-5 border border-t-4 border-t-cyan-500 rounded flex-1 min-w-[250px] text-center flex flex-col">
-        <div className="h-6 self-center">
+    <div className="flex justify-center">
+      <div className="m-4 p-5 border border-t-4 border-t-cyan-500 rounded flex-1 min-w-[250px] max-w-[300px] text-center flex flex-col">
+        <div className="self-center">
           {extraTag ? (
             <Text
               renderBlock={(props) => (
@@ -25,7 +25,7 @@ const PlanBrick: types.Brick<PlanBrickProps> = ({ extraTag, href }) => {
             />
           ) : null}
         </div>
-        <div className="h-28 mb-3">
+        <div className="mb-3">
           <Text
             renderBlock={(props) => (
               <h2 className="text-2xl text-cyan-500 font-bold mb-4">
@@ -44,7 +44,7 @@ const PlanBrick: types.Brick<PlanBrickProps> = ({ extraTag, href }) => {
             propName="planParagraph"
           />
         </div>
-        <div className="h-24 mb-2 flex flex-col justify-center gap-y-1.5">
+        <div className="mb-2 flex flex-col justify-center gap-y-1.5">
           <Text
             renderBlock={(props) => (
               <strong className="block text-3xl font-bold pt-4">

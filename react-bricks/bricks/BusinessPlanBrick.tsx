@@ -20,13 +20,16 @@ const BusinessPlanBrick: types.Brick<BusinessPlanBrickProps> = ({
   width,
   colNumber,
 }) => {
+  //auto-cols-min grid-flow-dense xl:grid-cols-${colNumber} 2xl:grid-cols-${colNumber} lg:grid-cols-${colNumber} md:grid-cols-2 sm:grid-cols-1
   return (
     <Section bg={bg}>
-      <Container size={width} className={`grid grid-cols-${colNumber} gap-3`}>
-        <Repeater
-          propName="plan-brick"
-          renderItemWrapper={(items) => <div>{items}</div>}
-        />
+      <Container size={width}>
+        <div className={`grid grid-cols-${colNumber} auto-cols-min `}>
+          <Repeater
+            propName="plan-brick"
+            renderItemWrapper={(items) => <div>{items}</div>}
+          />
+        </div>
       </Container>
     </Section>
   );
@@ -64,6 +67,7 @@ BusinessPlanBrick.schema = {
               { value: 1, label: "1" },
               { value: 2, label: "2" },
               { value: 3, label: "3" },
+              { value: 4, label: "4" },
             ],
           },
         },
