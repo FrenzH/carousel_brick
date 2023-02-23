@@ -7,7 +7,7 @@ import ThumbBrickContainer from "./ThumbBrickContainer";
 import ThumbLink from "./ThumbLink";
 import ThumbLinkContainer from "./ThumbLinkContainer";
 import PlanBrick from "./PlanBrick";
-import BusinessPlan4Brick from "./BusinessPlan4Brick";
+import BusinessPlanBrick from "./BusinessPlanBrick";
 import PlanFeatureBrick from "./PlanFeatureBrick";
 import BusinessPlan3Brick from "./BusinessPlan3Brick";
 
@@ -20,7 +20,7 @@ const bricks: types.Brick<any>[] = [
   ThumbLink,
   ThumbLinkContainer,
   PlanBrick,
-  BusinessPlan4Brick,
+  BusinessPlanBrick,
   PlanFeatureBrick,
   BusinessPlan3Brick,
   // Example custom brick

@@ -48,7 +48,7 @@ enum blockNames {
   ThumbLink = "thumb-link",
   ThumbLinkContainer = "thumb-link-container",
   PlanBrick = "plan-brick",
-  BusinessPlan4Brick = "business4-plan",
+  BusinessPlanBrick = "business-plan",
   BusinessPlan3Brick = "business3-plan",
   PlanFeatureBrick = "plan-feature",
 }

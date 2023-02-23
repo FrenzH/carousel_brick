@@ -190,6 +190,10 @@ CarouselBrick.schema = {
         {
           name: "gap",
           label: "gap",
+          show: (props: ImageCarouselProps) => {
+            if (props.slidesToRender != "1") return true;
+            else return false;
+          },
           type: types.SideEditPropType.Select,
           selectOptions: {
             display: types.OptionsDisplay.Select,

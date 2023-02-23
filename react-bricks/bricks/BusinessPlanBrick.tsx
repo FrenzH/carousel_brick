@@ -9,12 +9,12 @@ import {
 } from "./layout/LayoutSideProps";
 import blockNames from "./layout/blockNames";
 
-interface BusinessPlan4BrickProps {
+interface BusinessPlanBrickProps {
   bg?: { color: string; className: string };
   width?: Size;
 }
 
-const BusinessPlan4Brick: types.Brick<BusinessPlan4BrickProps> = ({
+const BusinessPlanBrick: types.Brick<BusinessPlanBrickProps> = ({
   bg,
   width,
 }) => {
@@ -33,9 +33,9 @@ const BusinessPlan4Brick: types.Brick<BusinessPlan4BrickProps> = ({
   );
 };
 
-BusinessPlan4Brick.schema = {
-  name: blockNames.BusinessPlan4Brick,
-  label: "4 business plan ",
+BusinessPlanBrick.schema = {
+  name: blockNames.BusinessPlanBrick,
+  label: "business plan ",
   category: "rb-ui website",
   getDefaultProps: () => ({}),
   repeaterItems: [
@@ -55,4 +55,4 @@ BusinessPlan4Brick.schema = {
   ],
 };
 
-export default BusinessPlan4Brick;
+export default BusinessPlanBrick;
