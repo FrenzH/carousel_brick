@@ -22,7 +22,7 @@ const TableRow: types.Brick<TableRowProps> = ({
     return index === 0 ? (
       <thead
         className={`align-middle  ${
-          thColor ? `bg-gray-100 dark:bg-gray-800` : ``
+          thColor ? `bg-gray-100 dark:bg-gray-800` : `bg-white`
         }`}
       >
         <tr className={`align-middle`}>
@@ -38,7 +38,7 @@ const TableRow: types.Brick<TableRowProps> = ({
     ) : (
       <tbody className="align-middle">
         {index % 2 === parseInt(oddOrEven) ? (
-          <tr className={`align-middle bg-gray-100 dark:bg-gray-800 `}>
+          <tr className={`align-middle bg-gray-100  `}>
             <Repeater
               propName="cells"
               itemProps={{
@@ -47,7 +47,7 @@ const TableRow: types.Brick<TableRowProps> = ({
             />
           </tr>
         ) : (
-          <tr className={`align-middle `}>
+          <tr className={`align-middle bg-white`}>
             <Repeater
               propName="cells"
               itemProps={{
@@ -72,12 +72,6 @@ TableRow.schema = {
     textAlign: "left",
     thColor: false,
     cells: [
-      {
-        text: "Cell",
-      },
-      {
-        text: "Cell",
-      },
       {
         text: "Cell",
       },

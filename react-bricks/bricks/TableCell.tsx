@@ -1,6 +1,14 @@
 import React from "react";
 import { Text, types } from "react-bricks/frontend";
 import blockNames from "./layout/blockNames";
+import {
+  FiBox,
+  FiUserCheck,
+  FiCheckCircle,
+  FiCheck,
+  FiTwitter,
+  FiCheckSquare,
+} from "react-icons/fi";
 
 export interface TableCellProps {
   isHeader: boolean;
@@ -23,13 +31,13 @@ const TableCell: types.Brick<TableCellProps> = ({
         propName="cellText"
         placeholder="Insert text"
         renderBlock={({ children }) => (
-          <span className="text-gray-900 dark:text-white">{children}</span>
+          <span className="text-gray-900 ">{children}</span>
         )}
       />
     </th>
   ) : (
     <td
-      className={`align-middle border-gray-300 px-4 py-3 ${
+      className={`align-middle  text-slate-700 border-gray-300 px-4 py-3 ${
         border ? `` : `border`
       } text-${textAlign}`}
     >
