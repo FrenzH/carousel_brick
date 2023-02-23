@@ -10,6 +10,9 @@ import PlanBrick from "./PlanBrick";
 import BusinessPlanBrick from "./BusinessPlanBrick";
 import PlanFeatureBrick from "./PlanFeatureBrick";
 import BusinessPlan3Brick from "./BusinessPlan3Brick";
+import Table from "./Table";
+import TableCell from "./TableCell";
+import TableRow from "./TableRow";
 
 const bricks: types.Brick<any>[] = [
   ...website, // React Bricks UI
@@ -23,6 +26,9 @@ const bricks: types.Brick<any>[] = [
   BusinessPlanBrick,
   PlanFeatureBrick,
   BusinessPlan3Brick,
+  Table,
+  TableCell,
+  TableRow,
   // Example custom brick
   // Put here your other bricks...
 ];
