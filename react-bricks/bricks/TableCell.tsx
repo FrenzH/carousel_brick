@@ -1,14 +1,6 @@
 import React from "react";
 import { Text, types } from "react-bricks/frontend";
 import blockNames from "./layout/blockNames";
-import {
-  FiBox,
-  FiUserCheck,
-  FiCheckCircle,
-  FiCheck,
-  FiTwitter,
-  FiCheckSquare,
-} from "react-icons/fi";
 
 export interface TableCellProps {
   isHeader: boolean;
@@ -23,7 +15,7 @@ const TableCell: types.Brick<TableCellProps> = ({
 }) => {
   return isHeader ? (
     <th
-      className={`align-middle px-4 py-3  border-gray-300 text-${textAlign} ${
+      className={` px-4 py-3  border-gray-300 text-${textAlign} ${
         border ? `` : `border`
       }`}
     >
@@ -37,7 +29,7 @@ const TableCell: types.Brick<TableCellProps> = ({
     </th>
   ) : (
     <td
-      className={`align-middle  text-slate-700 border-gray-300 px-4 py-3 ${
+      className={` text-slate-700 border-gray-300 px-4 py-3 ${
         border ? `` : `border`
       } text-${textAlign}`}
     >
