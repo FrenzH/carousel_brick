@@ -22,7 +22,10 @@ const ThumbLinkContainer: types.Brick<ThumbBrickContainerProps> = ({
 }) => {
   return (
     <Section bg={bg} className={`pt-1`}>
-      <Container size={width} className={`grid grid-cols-${colNumber} gap-3`}>
+      <Container
+        size={width}
+        className={`grid lg:grid-cols-${colNumber} xl:grid-cols-${colNumber} 2xl:grid-cols-${colNumber}  gap-3 grid-cols-1 md:grid-cols-2`}
+      >
         <Repeater
           propName="thumbLink"
           renderItemWrapper={(items) => <div>{items}</div>}
