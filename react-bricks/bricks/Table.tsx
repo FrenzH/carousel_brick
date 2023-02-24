@@ -15,7 +15,7 @@ const Table: types.Brick<TableProps> = ({ bg, rowStyle = 0, border }) => {
   return (
     <Section bg={bg}>
       <Container size="lg" className="py-12 xl:py-20">
-        <table className="rounded w-full text-sm border-collapse border-spacing-0.5   sm:overflow-x-hidden">
+        <table className=" w-full text-sm border-collapse border-spacing-0.5 sm:overflow-x-hidden">
           <Repeater
             propName="rows"
             itemProps={{ oddOrEven: rowStyle, borderLayout: border }}
