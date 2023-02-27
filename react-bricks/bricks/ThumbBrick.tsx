@@ -56,11 +56,16 @@ const ThumbBrick: types.Brick<ThumbBrickProps> = ({
                 renderBlock={(props) => (
                   <div className="flex items-center">
                     {props.children}
+
                     <svg
                       viewBox="0 0 14 14"
                       width="14px"
                       height="14px"
-                      className="w-3 h-3"
+                      className={`w-3 h-3 ${
+                        props.children[0].props.text.text === ''
+                          ? `hidden`
+                          : `block`
+                      } `}
                     >
                       <path d="m11.1 7.35-5.5 5.5a.5.5 0 0 1-.7-.7L10.04 7 4.9 1.85a.5.5 0 1 1 .7-.7l5.5 5.5c.2.2.2.5 0 .7Z"></path>
                     </svg>
