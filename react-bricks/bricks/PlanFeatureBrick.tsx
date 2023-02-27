@@ -47,9 +47,9 @@ const PlanFeatureBrick: types.Brick<PlanFeatureBrickProps> = ({
       {extraTag && linkTextContent !== "" ? (
         <Text
           renderBlock={(props) => (
-            <span className="ml-1.5 min-w-[50px] px-1 py-1 text-center leading-none rounded bg-cyan-200 font-medium text-cyan-800 text-sm">
+            <div className="ml-1.5 min-w-[30px] px-1 py-1  leading-none rounded bg-cyan-200 font-medium text-cyan-800 text-sm">
               {props.children}
-            </span>
+            </div>
           )}
           placeholder="tag"
           propName="featureExtraTag"
