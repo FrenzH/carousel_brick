@@ -56,9 +56,10 @@ const ThumbBrick: types.Brick<ThumbBrickProps> = ({
             <Link
               propName="link"
               href={href}
-              className={`cursor-pointer ${
-                linkTextContent === "" ? "block w-full" : "flex items-center"
-              }  text-sky-500 hover:text-sky-600 hover:-translate-y-px transition-all ease-out duration-150`}
+              className={classNames(
+                linkTextContent === "" ? "block w-full" : "flex items-center",
+                "cursor-pointer text-sky-500 hover:text-sky-600 hover:-translate-y-px transition-all ease-out duration-150"
+              )}
             >
               <Text
                 renderBlock={(props) => <span>{props.children}</span>}

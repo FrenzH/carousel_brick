@@ -1,4 +1,5 @@
 import React from "react";
+import classNames from "classnames";
 import { types, Plain } from "react-bricks/frontend";
 import { Text } from "react-bricks/frontend";
 import blockNames from "./layout/blockNames";
@@ -19,9 +20,9 @@ const PlanFeatureBrick: types.Brick<PlanFeatureBrickProps> = ({
 
   return (
     <div
-      className={`${
+      className={classNames(
         linkTextContent === "" ? "block w-full" : "flex items-center"
-      }`}
+      )}
     >
       {linkTextContent === "" ? null : (
         <svg
