@@ -1,13 +1,15 @@
-import React from 'react'
-import { types } from 'react-bricks/frontend'
-import { RichText, Text, Image, Link } from 'react-bricks/frontend'
-import blockNames from './layout/blockNames'
+import React from "react";
+import classNames from "classnames";
+import { Plain, types } from "react-bricks/frontend";
+import { RichText, Text, Image, Link } from "react-bricks/frontend";
+import blockNames from "./layout/blockNames";
 
 interface ThumbBrickProps {
-  withIcon: boolean
-  withTitle: boolean
-  withLink: boolean
-  href: string
+  withIcon: boolean;
+  withTitle: boolean;
+  withLink: boolean;
+  href: string;
+  linkText: any;
 }
 
 const ThumbBrick: types.Brick<ThumbBrickProps> = ({
@@ -15,7 +17,11 @@ const ThumbBrick: types.Brick<ThumbBrickProps> = ({
   withTitle,
   withLink,
   href,
+  linkText,
 }) => {
+  const linkTextContent =
+    typeof linkText === "string" ? linkText : Plain.serialize(linkText);
+
   return (
     <div className={`p-7 flex border border-slate-200 rounded`}>
       {withIcon ? (
@@ -50,85 +56,83 @@ const ThumbBrick: types.Brick<ThumbBrickProps> = ({
             <Link
               propName="link"
               href={href}
-              className="w-full cursor-pointer inline-block text-sky-500 hover:text-sky-600 hover:-translate-y-px transition-all ease-out duration-150"
+              className={`cursor-pointer ${
+                linkTextContent === "" ? "block w-full" : "flex items-center"
+              }  text-sky-500 hover:text-sky-600 hover:-translate-y-px transition-all ease-out duration-150`}
             >
               <Text
-                renderBlock={(props) => (
-                  <div className="flex items-center">
-                    {props.children}
-
-                    <svg
-                      viewBox="0 0 14 14"
-                      width="14px"
-                      height="14px"
-                      className={`w-3 h-3 ${
-                        props.children[0].props.text.text === ''
-                          ? `hidden`
-                          : `block`
-                      } `}
-                    >
-                      <path d="m11.1 7.35-5.5 5.5a.5.5 0 0 1-.7-.7L10.04 7 4.9 1.85a.5.5 0 1 1 .7-.7l5.5 5.5c.2.2.2.5 0 .7Z"></path>
-                    </svg>
-                  </div>
-                )}
+                renderBlock={(props) => <span>{props.children}</span>}
                 placeholder="type a link text..."
                 propName="linkText"
               />
+
+              {linkTextContent === "" ? null : (
+                <svg
+                  stroke="currentColor"
+                  fill="currentColor"
+                  viewBox="0 0 14 14"
+                  width="14px"
+                  height="14px"
+                  className={`w-3 h-3 inline-block`}
+                >
+                  <path d="m11.1 7.35-5.5 5.5a.5.5 0 0 1-.7-.7L10.04 7 4.9 1.85a.5.5 0 1 1 .7-.7l5.5 5.5c.2.2.2.5 0 .7Z"></path>
+                </svg>
+              )}
             </Link>
           ) : null}
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 ThumbBrick.schema = {
   name: blockNames.ThumbBrick,
-  label: 'thumb',
-  category: 'rb-ui website',
+  label: "thumb",
+  category: "rb-ui website",
   hideFromAddMenu: true,
   getDefaultProps: () => ({
-    linkText: 'type a link text',
+    linkText: "type a link text",
   }),
   sideEditProps: [
     {
-      groupName: 'thumb',
+      groupName: "thumb",
       props: [
         {
-          name: 'withIcon',
-          label: 'With Icon',
+          name: "withIcon",
+          label: "With Icon",
           type: types.SideEditPropType.Boolean,
         },
       ],
     },
     {
-      groupName: 'title',
+      groupName: "title",
       props: [
         {
-          name: 'withTitle',
-          label: 'With Title',
+          name: "withTitle",
+          label: "With Title",
           type: types.SideEditPropType.Boolean,
         },
       ],
     },
     {
-      groupName: 'link',
+      groupName: "link",
       props: [
         {
-          name: 'withLink',
-          label: 'With Link',
+          name: "withLink",
+          label: "With Link",
           type: types.SideEditPropType.Boolean,
         },
         {
-          name: 'href',
-          label: 'link',
+          name: "href",
+          label: "link",
           type: types.SideEditPropType.Text,
           validate: (value) =>
-            value && value.length > 10 && String(value).startsWith('https://'),
+            value && value.length > 10 && String(value).startsWith("https://"),
         },
       ],
     },
   ],
-}
+};
 
-export default ThumbBrick
+export default ThumbBrick;
