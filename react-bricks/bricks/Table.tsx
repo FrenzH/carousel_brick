@@ -9,16 +9,26 @@ export interface TableProps {
   bg?: { color: string; className: string };
   rowStyle: number;
   border: boolean;
+  thColor: boolean;
 }
 
-const Table: types.Brick<TableProps> = ({ bg, rowStyle = 0, border }) => {
+const Table: types.Brick<TableProps> = ({
+  bg,
+  rowStyle = 0,
+  border,
+  thColor,
+}) => {
   return (
     <Section bg={bg}>
       <Container size="lg" className="py-12 xl:py-20">
         <table className=" w-full text-sm border-collapse border-spacing-0.5 sm:overflow-x-auto">
           <Repeater
             propName="rows"
-            itemProps={{ oddOrEven: rowStyle, borderLayout: border }}
+            itemProps={{
+              oddOrEven: rowStyle,
+              borderLayout: border,
+              thColor: thColor,
+            }}
           />
         </table>
       </Container>
@@ -34,6 +44,7 @@ Table.schema = {
   // Defaults when a new brick is added
   getDefaultProps: () => ({
     border: false,
+    thColor: false,
     rows: [
       {
         cells: [
@@ -197,6 +208,11 @@ Table.schema = {
               { value: -1, label: "none" },
             ],
           },
+        },
+        {
+          name: "thColor",
+          label: "head row color",
+          type: types.SideEditPropType.Boolean,
         },
         {
           name: "border",

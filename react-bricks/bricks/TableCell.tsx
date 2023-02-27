@@ -1,4 +1,5 @@
 import React from "react";
+import classNames from "classnames";
 import { Text, types } from "react-bricks/frontend";
 import blockNames from "./layout/blockNames";
 
@@ -15,9 +16,15 @@ const TableCell: types.Brick<TableCellProps> = ({
 }) => {
   return isHeader ? (
     <th
+      className={classNames(
+        "px-4 py-3 border-gray-300",
+        `text-${textAlign}`,
+        border ? "" : "border"
+      )}
+      /*
       className={` px-4 py-3  border-gray-300 text-${textAlign} ${
         border ? `` : `border`
-      }`}
+      }`}*/
     >
       <Text
         propName="cellText"
@@ -29,9 +36,16 @@ const TableCell: types.Brick<TableCellProps> = ({
     </th>
   ) : (
     <td
+      className={classNames(
+        "text-slate-700 border-gray-300 px-4 py-3",
+        `text-${textAlign}`,
+        border ? "" : "border"
+      )}
+
+      /*
       className={` text-slate-700 border-gray-300 px-4 py-3 ${
         border ? `` : `border`
-      } text-${textAlign}`}
+      } text-${textAlign}`}*/
     >
       <Text
         propName="cellText"

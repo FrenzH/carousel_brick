@@ -1,4 +1,4 @@
-import { parse } from "path";
+import classNames from "classnames";
 import React from "react";
 import { Repeater, types } from "react-bricks/frontend";
 import blockNames from "./layout/blockNames";
@@ -13,7 +13,6 @@ export interface TableRowProps {
 
 const TableRow: types.Brick<TableRowProps> = ({
   index,
-
   thColor,
   oddOrEven,
   borderLayout,
@@ -21,9 +20,10 @@ const TableRow: types.Brick<TableRowProps> = ({
   {
     return index === 0 ? (
       <thead
-        className={`align-middle  ${
-          thColor ? `bg-gray-100 dark:bg-gray-800` : `bg-white`
-        }`}
+        className={classNames(
+          "align-middle",
+          thColor ? "bg-gray-100 dark:bg-gray-800" : "bg-white"
+        )}
       >
         <tr className={`align-middle`}>
           <Repeater
@@ -70,7 +70,7 @@ TableRow.schema = {
   // Defaults when a new brick is added
   getDefaultProps: () => ({
     textAlign: "left",
-    thColor: false,
+
     cells: [
       {
         text: "Cell",
@@ -90,19 +90,7 @@ TableRow.schema = {
   ],
 
   // Sidebar Edit controls for props
-  sideEditProps: [
-    {
-      groupName: "row layout",
-      defaultOpen: true,
-      props: [
-        {
-          name: "thColor",
-          label: "head row color",
-          type: types.SideEditPropType.Boolean,
-        },
-      ],
-    },
-  ],
+  sideEditProps: [],
 };
 
 export default TableRow;
