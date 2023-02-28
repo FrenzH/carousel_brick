@@ -22,7 +22,7 @@ const BusinessPlanBrick: types.Brick<BusinessPlanBrickProps> = ({
   return (
     <Section bg={bg}>
       <Container>
-        <div className={`flex flex-1 grow flex-wrap justify-center`}>
+        <div className={`flex flex-wrap justify-center`}>
           <Repeater
             propName="plan-brick"
             renderItemWrapper={(items) => <div>{items}</div>}
@@ -44,7 +44,7 @@ BusinessPlanBrick.schema = {
       itemType: blockNames.PlanBrick,
       itemLabel: "plan brick",
       min: 0,
-      max: 5,
+      max: 6,
     },
   ],
   sideEditProps: [
