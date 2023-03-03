@@ -1,48 +1,42 @@
 import React from "react";
 import { types } from "react-bricks/frontend";
 import { Repeater } from "react-bricks/frontend";
-import Container, { Size } from "./layout/Container";
-import Section from "./layout/Section";
+import Container, { Size } from "../shared/components/Container";
+import Section from "../shared/components/Section";
+import blockNames from "../shared/blockNames";
 import {
-  BackgroundColorsSideEditProps,
-  ContainerSizeSideEditProps,
-} from "./layout/LayoutSideProps";
-import blockNames from "./layout/blockNames";
+  backgroundColorsEditProps,
+  containerSizeEditProps,
+  neutralBackgroundColorsEditProps,
+} from "../shared/LayoutSideProps";
 
-interface BusinessPlanBrickProps {
-  bg?: { color: string; className: string };
+interface PricingProps {
+  backgroundColor?: { color: string; className: string };
   width?: Size;
 }
 
-const BusinessPlanBrick: types.Brick<BusinessPlanBrickProps> = ({
-  bg,
-  width,
-}) => {
-  //2xl:flex-nowrap  at className line 26 to try
+const Pricing: types.Brick<PricingProps> = ({ backgroundColor, width }) => {
   return (
-    <Section bg={bg}>
-      <Container>
+    <Section backgroundColor={backgroundColor}>
+      <Container size={width}>
         <div className={`flex flex-wrap justify-center`}>
-          <Repeater
-            propName="plan-brick"
-            renderItemWrapper={(items) => <div>{items}</div>}
-          />
+          <Repeater propName="plans" />
         </div>
       </Container>
     </Section>
   );
 };
 
-BusinessPlanBrick.schema = {
-  name: blockNames.BusinessPlanBrick,
-  label: "business plan ",
-  category: "rb-ui website",
+Pricing.schema = {
+  name: blockNames.Pricing,
+  label: "Pricing",
+  category: "pricing",
   getDefaultProps: () => ({}),
   repeaterItems: [
     {
-      name: "plan-brick",
-      itemType: blockNames.PlanBrick,
-      itemLabel: "plan brick",
+      name: "plans",
+      itemType: blockNames.PricingPlan,
+      itemLabel: "Plan",
       min: 0,
       max: 6,
     },
@@ -50,9 +44,9 @@ BusinessPlanBrick.schema = {
   sideEditProps: [
     {
       groupName: "layout",
-      props: [BackgroundColorsSideEditProps, ContainerSizeSideEditProps],
+      props: [neutralBackgroundColorsEditProps, containerSizeEditProps],
     },
   ],
 };
 
-export default BusinessPlanBrick;
+export default Pricing;

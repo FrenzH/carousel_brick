@@ -2,18 +2,18 @@ import React from "react";
 import classNames from "classnames";
 import { types, Plain } from "react-bricks/frontend";
 import { Text } from "react-bricks/frontend";
-import blockNames from "./layout/blockNames";
+import blockNames from "../shared/blockNames";
 
-interface PlanFeatureBrickProps {
-  extraTag?: boolean;
+interface PlanFeatureProps {
+  withTag?: boolean;
   featureText: any;
 }
 
-const PlanFeatureBrick: types.Brick<PlanFeatureBrickProps> = ({
-  extraTag,
+const PlanFeature: types.Brick<PlanFeatureProps> = ({
+  withTag,
   featureText,
 }) => {
-  const linkTextContent =
+  const featureTextContent =
     typeof featureText === "string"
       ? featureText
       : Plain.serialize(featureText);
@@ -21,10 +21,10 @@ const PlanFeatureBrick: types.Brick<PlanFeatureBrickProps> = ({
   return (
     <div
       className={classNames(
-        linkTextContent === "" ? "block w-full" : "flex items-center"
+        featureTextContent === "" ? "block w-full" : "flex items-center"
       )}
     >
-      {linkTextContent === "" ? null : (
+      {featureTextContent === "" ? null : (
         <svg
           stroke="currentColor"
           fill="currentColor"
@@ -40,42 +40,42 @@ const PlanFeatureBrick: types.Brick<PlanFeatureBrickProps> = ({
       )}
 
       <Text
-        renderBlock={(props) => <span className="">{props.children}</span>}
+        renderBlock={(props) => <span>{props.children}</span>}
         placeholder="type a text"
         propName="featureText"
       />
-      {extraTag && linkTextContent !== "" ? (
+      {withTag && featureTextContent !== "" ? (
         <Text
           renderBlock={(props) => (
-            <div className="ml-1.5 min-w-[30px] px-1 py-1  leading-none rounded bg-cyan-200 font-medium text-cyan-800 text-sm">
+            <div className="ml-1.5 min-w-[30px] px-1 py-1 leading-none rounded bg-cyan-200 font-medium text-cyan-800 text-sm">
               {props.children}
             </div>
           )}
           placeholder="tag"
-          propName="featureExtraTag"
+          propName="tag"
         />
       ) : null}
     </div>
   );
 };
 
-PlanFeatureBrick.schema = {
-  name: blockNames.PlanFeatureBrick,
-  label: "feature",
-  category: "rb-ui website",
+PlanFeature.schema = {
+  name: blockNames.PlanFeature,
+  label: "Feature",
+  category: "pricing",
   hideFromAddMenu: true,
   getDefaultProps: () => ({
-    featureText: "Hi , i'm a feature!",
-    featureExtraTag: "Soon",
-    extraTag: false,
+    featureText: "Up to 5 users",
+    withTag: false,
+    tag: "Add-on",
   }),
   sideEditProps: [
     {
-      groupName: "feature",
+      groupName: "Feature",
       props: [
         {
-          name: "extraTag",
-          label: "With extra tag",
+          name: "withTag",
+          label: "With tag",
           type: types.SideEditPropType.Boolean,
         },
       ],
@@ -83,4 +83,4 @@ PlanFeatureBrick.schema = {
   ],
 };
 
-export default PlanFeatureBrick;
+export default PlanFeature;

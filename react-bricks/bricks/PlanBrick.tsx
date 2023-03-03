@@ -1,54 +1,83 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { types } from "react-bricks/frontend";
 import { RichText, Text, Link, Repeater } from "react-bricks/frontend";
-import blockNames from "./layout/blockNames";
+import blockNames from "../shared/blockNames";
+import {
+  backgroundColorsEditProps,
+  badgeColorsEditProps,
+  buttonColorsEditProps,
+} from "../shared/LayoutSideProps";
+import classNames from "classnames";
+import { bgColors } from "../shared/colors";
 
-interface PlanBrickProps {
-  extraTag: boolean;
-  href: string;
-  hrefExtra: string;
-  extraButton: boolean;
+interface PricingPlanProps {
+  withPopularTag: boolean;
+  buttonLinkPath: string;
+  withSecondButton: boolean;
+  seconButtonLinkPath: string;
+  backgroundColor: { color: string; className: string };
+  badgeColor: { color: string; className: string };
+  buttonColor: {
+    color: string;
+    classNameSolid: string;
+    classNameOutline: string;
+  };
+  highlightTextColor: { color: string; className: string };
+  colorPlan: { color: string; className: string };
 }
 
-const PlanBrick: types.Brick<PlanBrickProps> = ({
-  extraTag,
-  href,
-  hrefExtra,
-  extraButton,
+const PricingPlan: types.Brick<PricingPlanProps> = ({
+  withPopularTag,
+  buttonLinkPath,
+  withSecondButton,
+  seconButtonLinkPath,
+  colorPlan = { color: "#06b6d4", className: "bg-cyan-500" },
 }) => {
+  console.log(colorPlan.color);
   return (
     <div>
-      <div className="m-4 p-5 border border-t-4 border-t-cyan-500 rounded flex-1 min-w-[250px] max-w-[350px] text-center flex flex-col sm:w-[250px] md:w-[270px] lg:w-[300px]">
+      <div
+        className={classNames(
+          `border-t-[${colorPlan.color}]`,
+          "m-4 p-5 border border-t-4  rounded flex-1 min-w-[250px] max-w-[350px] text-center flex flex-col sm:w-[250px] md:w-[270px] lg:w-[300px]"
+        )}
+      >
         <div className="h-6 self-center">
-          {extraTag ? (
+          {withPopularTag ? (
             <Text
               renderBlock={(props) => (
-                <div className="px-2 pt-px pb-1 rounded-b text-xs font-bold uppercase text-white bg-purple-600 -mt-5">
+                <div
+                  className={`px-2 pt-px pb-1 rounded-b text-xs font-bold uppercase text-white bg-[#50d71e] -mt-5`}
+                >
                   {props.children}
                 </div>
               )}
-              placeholder="type a title..."
-              propName="planExtraTag"
+              placeholder="Tag"
+              propName="popularTagText"
             />
           ) : null}
         </div>
-        <div className="">
+        <div>
           <Text
             renderBlock={(props) => (
-              <h2 className="text-2xl text-cyan-500 font-bold mb-4">
+              <h2
+                className={`text-2xl text-[${colorPlan.color}] font-bold mb-4`}
+              >
                 {props.children}
               </h2>
             )}
-            placeholder="type a title..."
-            propName="planTitle"
+            placeholder="Plan name..."
+            propName="planName"
           />
 
           <RichText
             renderBlock={(props) => (
-              <p className="text-lg text-gray-600">{props.children}</p>
+              <p className={`text-lg text-[${colorPlan.color}]`}>
+                {props.children}
+              </p>
             )}
-            placeholder="paragraph"
-            propName="planParagraph"
+            placeholder="Description..."
+            propName="planDescription"
           />
         </div>
         <div className="text-center mb-4">
@@ -58,41 +87,47 @@ const PlanBrick: types.Brick<PlanBrickProps> = ({
                 {props.children}
               </strong>
             )}
-            placeholder="type a title..."
+            placeholder="Price"
             propName="planPrice"
           />
 
           <Text
             renderBlock={(props) => (
-              <p className="text-gray-500 mb-2">{props.children}</p>
+              <p className={`text-[${colorPlan.color}] mb-2`}>
+                {props.children}
+              </p>
             )}
-            placeholder="type a title..."
-            propName="planDuration"
+            placeholder="per user / per month..."
+            propName="planConditions"
           />
         </div>
         <Link
-          propName="planLinkButton"
-          href={href}
+          href={buttonLinkPath}
           className={`cursor-pointer block ${
-            extraButton ? `mb-4` : `mb-8`
-          } text-center text-lg py-2 px-3 sm:px-5 rounded text-cyan-600 hover:text-white font-medium border-2 border-cyan-500 hover:bg-cyan-500 hover:shadow-lg transition duration-200`}
+            withSecondButton ? `mb-4` : `mb-8`
+          } text-center text-lg py-2 px-3 sm:px-5 rounded text-[${
+            colorPlan.color
+          }] hover:text-white font-medium border-2 border-[${
+            colorPlan.color
+          }] hover:bg-[${
+            colorPlan.color
+          }] hover:shadow-lg transition duration-200`}
         >
           <Text
             renderBlock={(props) => <div>{props.children}</div>}
-            placeholder="type a link text..."
-            propName="linkText"
+            placeholder="Action"
+            propName="buttonText"
           />
         </Link>
-        {extraButton ? (
+        {withSecondButton ? (
           <Link
-            propName="extraButtonLink"
-            href={hrefExtra}
+            href={seconButtonLinkPath}
             className="cursor-pointer block mb-8 text-center text-sm py-1 px-3 sm:px-5 rounded text-white bg-purple-500 hover:bg-indigo-500 font-medium hover:shadow-lg transition duration-200"
           >
             <Text
               renderBlock={(props) => <div>{props.children}</div>}
-              placeholder="type a link text..."
-              propName="linkText"
+              placeholder="Second action"
+              propName="secondButtonText"
             />
           </Link>
         ) : null}
@@ -107,13 +142,12 @@ const PlanBrick: types.Brick<PlanBrickProps> = ({
             propName="featuresTitle"
           />
 
-          <ul className="text-lg text-gray-700 text-left mt-3">
+          <ul className="text-lg text-gray-700 text-left">
             <Repeater
-              propName="plan-feature"
+              propName="features"
               renderItemWrapper={(items) => (
                 <li className="flex items-center space-x-2 mb-2">{items}</li>
               )}
-              itemProps={{}}
             />
           </ul>
         </div>
@@ -122,63 +156,80 @@ const PlanBrick: types.Brick<PlanBrickProps> = ({
   );
 };
 
-PlanBrick.schema = {
-  name: blockNames.PlanBrick,
-  label: "plan brick",
-  category: "rb-ui website",
+PricingPlan.schema = {
+  name: blockNames.PricingPlan,
+  label: "Plan",
+  category: "pricing",
   hideFromAddMenu: true,
   getDefaultProps: () => ({
-    planExtraTag: "MOST POPULAR",
-    extraTag: false,
-    planTitle: "custom",
-    planParagraph: "For startups and teams starting using React Bricks.",
+    popularTagText: "Most popular",
+    withPopularTag: false,
+    planName: "custom",
+    planDescription: "For startups and teams starting using React Bricks.",
     planPrice: "$ 99",
-    planDuration: "per app / month",
-    href: "",
-    linkText: "get started",
+    planConditions: "per app / month",
+    buttonTextText: "get started",
+    buttonLinkPath: "",
+    withSecondButton: false,
     featuresTitle: "Everything in Community, plus:",
-    extraButton: false,
+    backgroundColor: { color: "#06b6d4", className: "bg-cyan-500" },
   }),
   repeaterItems: [
     {
-      name: "plan-feature",
-      itemType: blockNames.PlanFeatureBrick,
+      name: "features",
+      itemType: blockNames.PlanFeature,
       itemLabel: "feature",
       min: 0,
-      max: 14,
+      max: 15,
     },
   ],
   sideEditProps: [
     {
       groupName: "plan",
       props: [
+        backgroundColorsEditProps,
+        badgeColorsEditProps,
+        buttonColorsEditProps,
+
         {
-          name: "extraTag",
-          label: "With extra tag",
+          name: "withPopularTag",
+          label: "Popular tag",
           type: types.SideEditPropType.Boolean,
         },
         {
-          name: "href",
-          label: "redirect plan link",
+          name: "buttonLinkPath",
+          label: "Button link",
           type: types.SideEditPropType.Text,
-          validate: (value) =>
-            value && value.length > 10 && String(value).startsWith("https://"),
         },
         {
-          name: "extraButton",
-          label: "with extra button",
+          name: "withSecondButton",
+          label: "Second button?",
           type: types.SideEditPropType.Boolean,
         },
         {
-          name: "hrefExtra",
-          label: "redirect extra button link",
+          name: "seconButtonLinkPath",
+          label: "Second button link",
           type: types.SideEditPropType.Text,
-          validate: (value) =>
-            value && value.length > 10 && String(value).startsWith("https://"),
+          show: (props) => !!props.withSecondButton,
+        },
+        {
+          name: "colorPlan",
+          label: "color plan",
+          type: types.SideEditPropType.Select,
+          shouldRefreshText: true,
+          selectOptions: {
+            display: types.OptionsDisplay.Color,
+            options: [
+              bgColors.WHITE,
+              bgColors.GRAY,
+              bgColors.AMBER,
+              bgColors.ORANGE,
+            ],
+          },
         },
       ],
     },
   ],
 };
 
-export default PlanBrick;
+export default PricingPlan;

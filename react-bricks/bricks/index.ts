@@ -6,10 +6,10 @@ import CarouselBrick from "./CarouselBrick";
 import ThumbBrickContainer from "./ThumbBrickContainer";
 import ThumbLink from "./ThumbLink";
 import ThumbLinkContainer from "./ThumbLinkContainer";
-import PlanBrick from "./PlanBrick";
-import BusinessPlanBrick from "./BusinessPlanBrick";
-import PlanFeatureBrick from "./PlanFeatureBrick";
-import BusinessPlan3Brick from "./BusinessPlan3Brick";
+import PricingPlan from "./PlanBrick";
+import Pricing from "./BusinessPlanBrick";
+import PlanFeature from "./PlanFeatureBrick";
+
 import Table from "./Table";
 import TableCell from "./TableCell";
 import TableRow from "./TableRow";
@@ -22,10 +22,10 @@ const bricks: types.Brick<any>[] = [
   ThumbBrickContainer,
   ThumbLink,
   ThumbLinkContainer,
-  PlanBrick,
-  BusinessPlanBrick,
-  PlanFeatureBrick,
-  BusinessPlan3Brick,
+  PricingPlan,
+  Pricing,
+  PlanFeature,
+
   Table,
   TableCell,
   TableRow,
