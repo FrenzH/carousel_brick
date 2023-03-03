@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { Repeater, types } from "react-bricks/frontend";
-import blockNames from "./layout/blockNames";
-import Container from "./layout/Container";
-import Section from "./layout/Section";
-import { BackgroundColorsSideEditProps } from "./layout/LayoutSideProps";
+import React, { useEffect, useState } from 'react'
+import { Repeater, types } from 'react-bricks/frontend'
+import blockNames from './layout/blockNames'
+import Container from './layout/Container'
+import Section from './layout/Section'
+import { BackgroundColorsSideEditProps } from './layout/LayoutSideProps'
 
 export interface TableProps {
-  bg?: { color: string; className: string };
-  rowStyle: number;
-  border: boolean;
-  thColor: boolean;
+  bg?: { color: string; className: string }
+  rowStyle: number
+  border: boolean
+  thColor: boolean
 }
 
 const Table: types.Brick<TableProps> = ({
@@ -33,13 +33,13 @@ const Table: types.Brick<TableProps> = ({
         </table>
       </Container>
     </Section>
-  );
-};
+  )
+}
 
 Table.schema = {
   name: blockNames.Table,
-  label: "Table",
-  category: "rb-ui website",
+  label: 'Table',
+  category: 'rb-ui website',
 
   // Defaults when a new brick is added
   getDefaultProps: () => ({
@@ -49,132 +49,132 @@ Table.schema = {
       {
         cells: [
           {
-            cellText: "Cell text default",
-            text: "Cell",
+            cellText: 'Cell text dhnldnjlddefault',
+            text: 'Cell',
           },
           {
-            cellText: "Cell text default",
-            text: "Cell",
-          },
-        ],
-      },
-      {
-        cells: [
-          {
-            cellText: "Cell text default",
-            text: "Cell",
-          },
-          {
-            cellText: "Cell text default",
-            text: "Cell",
+            cellText: 'Cell textskncnsckn default',
+            text: 'Cell',
           },
         ],
       },
       {
         cells: [
           {
-            cellText: "Cell text default",
-            text: "Cell",
+            cellText: 'Cell text dfffefault',
+            text: 'Cell',
           },
           {
-            cellText: "Cell text default",
-            text: "Cell",
-          },
-        ],
-      },
-      {
-        cells: [
-          {
-            cellText: "Cell text default",
-            text: "Cell",
-          },
-          {
-            cellText: "Cell text default",
-            text: "Cell",
+            cellText: 'Cell text default',
+            text: 'Cell',
           },
         ],
       },
       {
         cells: [
           {
-            cellText: "Cell text default",
-            text: "Cell",
+            cellText: 'Cell text default',
+            text: 'Cell',
           },
           {
-            cellText: "Cell text default",
-            text: "Cell",
-          },
-        ],
-      },
-      {
-        cells: [
-          {
-            cellText: "Cell text default",
-            text: "Cell",
-          },
-          {
-            cellText: "Cell text default",
-            text: "Cell",
+            cellText: 'Cell text default',
+            text: 'Cell',
           },
         ],
       },
       {
         cells: [
           {
-            cellText: "Cell text default",
-            text: "Cell",
+            cellText: 'Cell text default',
+            text: 'Cell',
           },
           {
-            cellText: "Cell text default",
-            text: "Cell",
-          },
-        ],
-      },
-      {
-        cells: [
-          {
-            cellText: "Cell text default",
-            text: "Cell",
-          },
-          {
-            cellText: "Cell text default",
-            text: "Cell",
+            cellText: 'Cell text default',
+            text: 'Cell',
           },
         ],
       },
       {
         cells: [
           {
-            cellText: "Cell text default",
-            text: "Cell",
+            cellText: 'Cell text default',
+            text: 'Cell',
           },
           {
-            cellText: "Cell text default",
-            text: "Cell",
-          },
-        ],
-      },
-      {
-        cells: [
-          {
-            cellText: "Cell text default",
-            text: "Cell",
-          },
-          {
-            cellText: "Cell text default",
-            text: "Cell",
+            cellText: 'Cell text default',
+            text: 'Cell',
           },
         ],
       },
       {
         cells: [
           {
-            cellText: "Cell text default",
-            text: "Cell",
+            cellText: 'Cell text default',
+            text: 'Cell',
           },
           {
-            cellText: "Cell text default",
-            text: "Cell",
+            cellText: 'Cell text default',
+            text: 'Cell',
+          },
+        ],
+      },
+      {
+        cells: [
+          {
+            cellText: 'Cell text default',
+            text: 'Cell',
+          },
+          {
+            cellText: 'Cell text default',
+            text: 'Cell',
+          },
+        ],
+      },
+      {
+        cells: [
+          {
+            cellText: 'Cell text default',
+            text: 'Cell',
+          },
+          {
+            cellText: 'Cell text default',
+            text: 'Cell',
+          },
+        ],
+      },
+      {
+        cells: [
+          {
+            cellText: 'Cell text default',
+            text: 'Cell',
+          },
+          {
+            cellText: 'Cell text default',
+            text: 'Cell',
+          },
+        ],
+      },
+      {
+        cells: [
+          {
+            cellText: 'Cell text default',
+            text: 'Cell',
+          },
+          {
+            cellText: 'Cell text default',
+            text: 'Cell',
+          },
+        ],
+      },
+      {
+        cells: [
+          {
+            cellText: 'Cell text default',
+            text: 'Cell',
+          },
+          {
+            cellText: 'Cell tsbcjsbjbcjscbsjkext default',
+            text: 'Cell',
           },
         ],
       },
@@ -183,7 +183,7 @@ Table.schema = {
 
   repeaterItems: [
     {
-      name: "rows",
+      name: 'rows',
       itemType: blockNames.TableRow,
       min: 1,
     },
@@ -192,36 +192,36 @@ Table.schema = {
   // Sidebar Edit controls for props
   sideEditProps: [
     {
-      groupName: "Layout",
+      groupName: 'Layout',
       defaultOpen: true,
       props: [
         BackgroundColorsSideEditProps,
         {
-          name: "rowStyle",
-          label: "row layout",
+          name: 'rowStyle',
+          label: 'row layout',
           type: types.SideEditPropType.Select,
           selectOptions: {
             display: types.OptionsDisplay.Select,
             options: [
-              { value: 0, label: "even" },
-              { value: 1, label: "odd" },
-              { value: -1, label: "none" },
+              { value: 0, label: 'even' },
+              { value: 1, label: 'odd' },
+              { value: -1, label: 'none' },
             ],
           },
         },
         {
-          name: "thColor",
-          label: "head row color",
+          name: 'thColor',
+          label: 'head row color',
           type: types.SideEditPropType.Boolean,
         },
         {
-          name: "border",
-          label: "border layout",
+          name: 'border',
+          label: 'border layout',
           type: types.SideEditPropType.Boolean,
         },
       ],
     },
   ],
-};
+}
 
-export default Table;
+export default Table
