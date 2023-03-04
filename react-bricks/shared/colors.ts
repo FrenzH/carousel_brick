@@ -101,6 +101,7 @@ const tailwindColors = {
     label: 'Rose',
     color500: '#f43f5e',
   },
+  BLACK: { name: 'black', label: 'Black', color500: '#000000' },
 } as const satisfies TailwindColors
 
 export const textColors = {
@@ -387,6 +388,13 @@ export const highlightTextColors = {
     value: {
       color: tailwindColors.ROSE.color500,
       className: 'text-rose-500 dark:text-rose-400',
+    },
+  },
+  BLACK: {
+    label: tailwindColors.BLACK.label,
+    value: {
+      color: tailwindColors.BLACK.color500,
+      className: 'text-black-500 dark:text-white-500',
     },
   },
 } as const satisfies Colors

@@ -1,29 +1,24 @@
-import React, { useState, useEffect } from "react";
-import { types } from "react-bricks/frontend";
-import { RichText, Text, Link, Repeater } from "react-bricks/frontend";
-import blockNames from "../shared/blockNames";
-import {
-  backgroundColorsEditProps,
-  badgeColorsEditProps,
-  buttonColorsEditProps,
-} from "../shared/LayoutSideProps";
-import classNames from "classnames";
-import { bgColors } from "../shared/colors";
+import React, { useState, useEffect } from 'react'
+import { types } from 'react-bricks/frontend'
+import { RichText, Text, Link, Repeater } from 'react-bricks/frontend'
+import blockNames from '../shared/blockNames'
+
+import { getClassName } from './Fn'
+import classNames from 'classnames'
+import { highlightTextColors } from '../shared/colors'
+import { bgColors } from './layout/color'
 
 interface PricingPlanProps {
-  withPopularTag: boolean;
-  buttonLinkPath: string;
-  withSecondButton: boolean;
-  seconButtonLinkPath: string;
-  backgroundColor: { color: string; className: string };
-  badgeColor: { color: string; className: string };
-  buttonColor: {
-    color: string;
-    classNameSolid: string;
-    classNameOutline: string;
-  };
-  highlightTextColor: { color: string; className: string };
-  colorPlan: { color: string; className: string };
+  withPopularTag: boolean
+  buttonLinkPath: string
+  withSecondButton: boolean
+  seconButtonLinkPath: string
+
+  textColor: { color: string; className: string }
+  borderColor: { color: string; className: string }
+  tagColor: { color: string; className: string }
+
+  buttonColor: { color: string; className: string }
 }
 
 const PricingPlan: types.Brick<PricingPlanProps> = ({
@@ -31,15 +26,44 @@ const PricingPlan: types.Brick<PricingPlanProps> = ({
   buttonLinkPath,
   withSecondButton,
   seconButtonLinkPath,
-  colorPlan = { color: "#06b6d4", className: "bg-cyan-500" },
+  textColor,
+  borderColor,
+  tagColor,
+  buttonColor,
 }) => {
-  console.log(colorPlan.color);
+  if (textColor === undefined) {
+    textColor = {
+      color: '#6b7280',
+      className: 'text-gray-500 dark:text-white',
+    }
+  }
+  if (borderColor === undefined) {
+    borderColor = {
+      color: '#f97316',
+      className: 'border-t-orange-500',
+    }
+  }
+
+  if (tagColor === undefined) {
+    tagColor = {
+      color: '#f97316',
+      className: 'border-orange-500 hover:bg-orange-500',
+    }
+  }
+
+  if (buttonColor === undefined) {
+    buttonColor = {
+      color: '#f97316',
+      className: 'border-orange-500 hover:bg-orange',
+    }
+  }
+  //console.log(getClassName(bgHover, 'hover'))
   return (
     <div>
       <div
         className={classNames(
-          `border-t-[${colorPlan.color}]`,
-          "m-4 p-5 border border-t-4  rounded flex-1 min-w-[250px] max-w-[350px] text-center flex flex-col sm:w-[250px] md:w-[270px] lg:w-[300px]"
+          `${getClassName(borderColor, 'border')}`,
+          'm-4 p-5 border border-t-4  rounded flex-1 min-w-[250px] max-w-[350px] text-center flex flex-col sm:w-[250px] md:w-[270px] lg:w-[300px]'
         )}
       >
         <div className="h-6 self-center">
@@ -47,7 +71,10 @@ const PricingPlan: types.Brick<PricingPlanProps> = ({
             <Text
               renderBlock={(props) => (
                 <div
-                  className={`px-2 pt-px pb-1 rounded-b text-xs font-bold uppercase text-white bg-[#50d71e] -mt-5`}
+                  className={`px-2 pt-px pb-1 rounded-b text-xs font-bold uppercase text-white ${getClassName(
+                    tagColor,
+                    'tag'
+                  )} -mt-5`}
                 >
                   {props.children}
                 </div>
@@ -61,7 +88,10 @@ const PricingPlan: types.Brick<PricingPlanProps> = ({
           <Text
             renderBlock={(props) => (
               <h2
-                className={`text-2xl text-[${colorPlan.color}] font-bold mb-4`}
+                className={`${getClassName(
+                  textColor,
+                  'textColor'
+                )} text-2xl font-bold mb-4`}
               >
                 {props.children}
               </h2>
@@ -72,7 +102,7 @@ const PricingPlan: types.Brick<PricingPlanProps> = ({
 
           <RichText
             renderBlock={(props) => (
-              <p className={`text-lg text-[${colorPlan.color}]`}>
+              <p className={`text-lg ${getClassName(textColor, 'textColor')}`}>
                 {props.children}
               </p>
             )}
@@ -83,7 +113,7 @@ const PricingPlan: types.Brick<PricingPlanProps> = ({
         <div className="text-center mb-4">
           <Text
             renderBlock={(props) => (
-              <strong className="block text-3xl font-bold pt-4">
+              <strong className="block text-3xl font-bold pt-4 text-black-500 dark:text-white-500">
                 {props.children}
               </strong>
             )}
@@ -93,7 +123,7 @@ const PricingPlan: types.Brick<PricingPlanProps> = ({
 
           <Text
             renderBlock={(props) => (
-              <p className={`text-[${colorPlan.color}] mb-2`}>
+              <p className={`${getClassName(textColor, 'textColor')} mb-2`}>
                 {props.children}
               </p>
             )}
@@ -105,13 +135,13 @@ const PricingPlan: types.Brick<PricingPlanProps> = ({
           href={buttonLinkPath}
           className={`cursor-pointer block ${
             withSecondButton ? `mb-4` : `mb-8`
-          } text-center text-lg py-2 px-3 sm:px-5 rounded text-[${
-            colorPlan.color
-          }] hover:text-white font-medium border-2 border-[${
-            colorPlan.color
-          }] hover:bg-[${
-            colorPlan.color
-          }] hover:shadow-lg transition duration-200`}
+          } text-center text-lg py-2 px-3 sm:px-5 rounded ${getClassName(
+            textColor,
+            'textColor'
+          )} hover:text-white font-medium border-2  bg-white-500 ${getClassName(
+            buttonColor,
+            'button'
+          )}  hover:shadow-lg transition duration-200`}
         >
           <Text
             renderBlock={(props) => <div>{props.children}</div>}
@@ -153,83 +183,184 @@ const PricingPlan: types.Brick<PricingPlanProps> = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 PricingPlan.schema = {
   name: blockNames.PricingPlan,
-  label: "Plan",
-  category: "pricing",
+  label: 'Plan',
+  category: 'pricing',
   hideFromAddMenu: true,
   getDefaultProps: () => ({
-    popularTagText: "Most popular",
+    popularTagText: 'Most popular',
     withPopularTag: false,
-    planName: "custom",
-    planDescription: "For startups and teams starting using React Bricks.",
-    planPrice: "$ 99",
-    planConditions: "per app / month",
-    buttonTextText: "get started",
-    buttonLinkPath: "",
+    planName: 'custom',
+    planDescription: 'For startups and teams starting using React Bricks.',
+    planPrice: '$ 99',
+    planConditions: 'per app / month',
+    buttonTextText: 'get started',
+    buttonLinkPath: '',
     withSecondButton: false,
-    featuresTitle: "Everything in Community, plus:",
-    backgroundColor: { color: "#06b6d4", className: "bg-cyan-500" },
+    featuresTitle: 'Everything in Community, plus:',
+    highlightTextColor: {
+      color: '#6b7280',
+      className: 'text-gray-500 dark_text.white',
+    },
   }),
   repeaterItems: [
     {
-      name: "features",
+      name: 'features',
       itemType: blockNames.PlanFeature,
-      itemLabel: "feature",
+      itemLabel: 'feature',
       min: 0,
       max: 15,
     },
   ],
   sideEditProps: [
     {
-      groupName: "plan",
+      groupName: 'plan',
       props: [
-        backgroundColorsEditProps,
-        badgeColorsEditProps,
-        buttonColorsEditProps,
-
         {
-          name: "withPopularTag",
-          label: "Popular tag",
+          name: 'withPopularTag',
+          label: 'Popular tag',
           type: types.SideEditPropType.Boolean,
         },
         {
-          name: "buttonLinkPath",
-          label: "Button link",
+          name: 'buttonLinkPath',
+          label: 'Button link',
           type: types.SideEditPropType.Text,
         },
         {
-          name: "withSecondButton",
-          label: "Second button?",
+          name: 'withSecondButton',
+          label: 'Second button?',
           type: types.SideEditPropType.Boolean,
         },
         {
-          name: "seconButtonLinkPath",
-          label: "Second button link",
+          name: 'seconButtonLinkPath',
+          label: 'Second button link',
           type: types.SideEditPropType.Text,
           show: (props) => !!props.withSecondButton,
         },
         {
-          name: "colorPlan",
-          label: "color plan",
+          name: 'textColor',
+          label: 'text color',
           type: types.SideEditPropType.Select,
           shouldRefreshText: true,
           selectOptions: {
             display: types.OptionsDisplay.Color,
             options: [
-              bgColors.WHITE,
-              bgColors.GRAY,
-              bgColors.AMBER,
-              bgColors.ORANGE,
+              highlightTextColors.GRAY,
+              highlightTextColors.RED,
+              highlightTextColors.ORANGE,
+              highlightTextColors.AMBER,
+              highlightTextColors.YELLOW,
+              highlightTextColors.LIME,
+              highlightTextColors.GREEN,
+              highlightTextColors.EMERALD,
+              highlightTextColors.TEAL,
+              highlightTextColors.CYAN,
+              highlightTextColors.SKY,
+              highlightTextColors.BLUE,
+              highlightTextColors.INDIGO,
+              highlightTextColors.VIOLET,
+              highlightTextColors.PURPLE,
+              highlightTextColors.FUCHSIA,
+              highlightTextColors.PINK,
+              highlightTextColors.ROSE,
+              highlightTextColors.BLACK,
+            ],
+          },
+        },
+        {
+          name: 'borderColor',
+          label: 'border color',
+          type: types.SideEditPropType.Select,
+          shouldRefreshText: true,
+          selectOptions: {
+            display: types.OptionsDisplay.Color,
+            options: [
+              highlightTextColors.GRAY,
+              highlightTextColors.RED,
+              highlightTextColors.ORANGE,
+              highlightTextColors.AMBER,
+              highlightTextColors.YELLOW,
+              highlightTextColors.LIME,
+              highlightTextColors.GREEN,
+              highlightTextColors.EMERALD,
+              highlightTextColors.TEAL,
+              highlightTextColors.CYAN,
+              highlightTextColors.SKY,
+              highlightTextColors.BLUE,
+              highlightTextColors.INDIGO,
+              highlightTextColors.VIOLET,
+              highlightTextColors.PURPLE,
+              highlightTextColors.FUCHSIA,
+              highlightTextColors.PINK,
+              highlightTextColors.ROSE,
+            ],
+          },
+        },
+        {
+          name: 'tagColor',
+          label: 'tag color',
+          type: types.SideEditPropType.Select,
+          shouldRefreshText: true,
+          selectOptions: {
+            display: types.OptionsDisplay.Color,
+            options: [
+              highlightTextColors.GRAY,
+              highlightTextColors.RED,
+              highlightTextColors.ORANGE,
+              highlightTextColors.AMBER,
+              highlightTextColors.YELLOW,
+              highlightTextColors.LIME,
+              highlightTextColors.GREEN,
+              highlightTextColors.EMERALD,
+              highlightTextColors.TEAL,
+              highlightTextColors.CYAN,
+              highlightTextColors.SKY,
+              highlightTextColors.BLUE,
+              highlightTextColors.INDIGO,
+              highlightTextColors.VIOLET,
+              highlightTextColors.PURPLE,
+              highlightTextColors.FUCHSIA,
+              highlightTextColors.PINK,
+              highlightTextColors.ROSE,
+            ],
+          },
+        },
+        {
+          name: 'buttonColor',
+          label: 'button color',
+          type: types.SideEditPropType.Select,
+          shouldRefreshText: true,
+          selectOptions: {
+            display: types.OptionsDisplay.Color,
+            options: [
+              highlightTextColors.GRAY,
+              highlightTextColors.RED,
+              highlightTextColors.ORANGE,
+              highlightTextColors.AMBER,
+              highlightTextColors.YELLOW,
+              highlightTextColors.LIME,
+              highlightTextColors.GREEN,
+              highlightTextColors.EMERALD,
+              highlightTextColors.TEAL,
+              highlightTextColors.CYAN,
+              highlightTextColors.SKY,
+              highlightTextColors.BLUE,
+              highlightTextColors.INDIGO,
+              highlightTextColors.VIOLET,
+              highlightTextColors.PURPLE,
+              highlightTextColors.FUCHSIA,
+              highlightTextColors.PINK,
+              highlightTextColors.ROSE,
             ],
           },
         },
       ],
     },
   ],
-};
+}
 
-export default PricingPlan;
+export default PricingPlan
