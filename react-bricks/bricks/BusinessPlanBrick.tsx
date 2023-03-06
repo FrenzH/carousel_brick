@@ -1,18 +1,18 @@
-import React from "react";
-import { types } from "react-bricks/frontend";
-import { Repeater } from "react-bricks/frontend";
-import Container, { Size } from "../shared/components/Container";
-import Section from "../shared/components/Section";
-import blockNames from "../shared/blockNames";
+import React from 'react'
+import { types } from 'react-bricks/frontend'
+import { Repeater } from 'react-bricks/frontend'
+import Container, { Size } from '../shared/components/Container'
+import Section from '../shared/components/Section'
+import blockNames from '../shared/blockNames'
 import {
-  backgroundColorsEditProps,
   containerSizeEditProps,
   neutralBackgroundColorsEditProps,
-} from "../shared/LayoutSideProps";
+} from '../shared/LayoutSideProps'
+import { pricingColors } from '../shared/colors'
 
 interface PricingProps {
-  backgroundColor?: { color: string; className: string };
-  width?: Size;
+  backgroundColor?: { color: string; className: string }
+  width?: Size
 }
 
 const Pricing: types.Brick<PricingProps> = ({ backgroundColor, width }) => {
@@ -24,29 +24,82 @@ const Pricing: types.Brick<PricingProps> = ({ backgroundColor, width }) => {
         </div>
       </Container>
     </Section>
-  );
-};
+  )
+}
 
 Pricing.schema = {
   name: blockNames.Pricing,
-  label: "Pricing",
-  category: "pricing",
-  getDefaultProps: () => ({}),
+  label: 'Pricing',
+  category: 'pricing',
+  getDefaultProps: () => ({
+    plans: [
+      {
+        popularTagText: 'Most popular',
+        withPopularTag: false,
+        pricingColor: pricingColors.CYAN.value,
+        planName: 'Entry',
+        planDescription: 'For startups and teams starting using React Bricks.',
+        planPrice: '$ 99',
+        planConditions: 'per app / month',
+        buttonText: 'Get started',
+        buttonLinkPath: '/',
+        featuresTitle: 'Everything in Community, plus:',
+        features: [
+          {
+            featureText: '5 users included',
+          },
+          {
+            featureText: 'Up to 100 pages',
+          },
+          {
+            featureText: 'Media library',
+            withTag: true,
+            tag: 'Soon',
+          },
+        ],
+      },
+      {
+        popularTagText: 'Most popular',
+        withPopularTag: true,
+        pricingColor: pricingColors.INDIGO.value,
+        planName: 'Professional',
+        planDescription: 'For companies needing to scale their content.',
+        planPrice: '$ 429',
+        planConditions: 'per app / month',
+        buttonText: 'Get started',
+        buttonLinkPath: '/',
+        featuresTitle: 'Everything in Entry, plus:',
+        features: [
+          {
+            featureText: '10 users included',
+          },
+          {
+            featureText: 'Up to 300 pages',
+          },
+          {
+            featureText: 'Visually create e-mails',
+            withTag: true,
+            tag: 'Add-on',
+          },
+        ],
+      },
+    ],
+  }),
   repeaterItems: [
     {
-      name: "plans",
+      name: 'plans',
       itemType: blockNames.PricingPlan,
-      itemLabel: "Plan",
+      itemLabel: 'Plan',
       min: 0,
       max: 6,
     },
   ],
   sideEditProps: [
     {
-      groupName: "layout",
+      groupName: 'layout',
       props: [neutralBackgroundColorsEditProps, containerSizeEditProps],
     },
   ],
-};
+}
 
-export default Pricing;
+export default Pricing
