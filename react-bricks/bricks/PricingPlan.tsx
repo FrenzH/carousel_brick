@@ -1,15 +1,15 @@
-import classNames from "classnames";
-import React from "react";
-import { types } from "react-bricks/frontend";
-import { RichText, Text, Link, Repeater } from "react-bricks/frontend";
-import blockNames from "../shared/blockNames";
-import { pricingColors, PricingColorValue } from "../shared/colors";
-import { pricingColorsEditProps } from "../shared/LayoutSideProps";
+import classNames from 'classnames'
+import React from 'react'
+import { types } from 'react-bricks/frontend'
+import { RichText, Text, Link, Repeater } from 'react-bricks/frontend'
+import blockNames from '../shared/blockNames'
+import { pricingColors, PricingColorValue, textColors } from '../shared/colors'
+import { pricingColorsEditProps } from '../shared/LayoutSideProps'
 
 interface PricingPlanProps {
-  pricingColor: PricingColorValue;
-  withPopularTag: boolean;
-  buttonLinkPath: string;
+  pricingColor: PricingColorValue
+  withPopularTag: boolean
+  buttonLinkPath: string
 }
 
 const PricingPlan: types.Brick<PricingPlanProps> = ({
@@ -20,7 +20,7 @@ const PricingPlan: types.Brick<PricingPlanProps> = ({
   return (
     <div
       className={classNames(
-        "m-4 p-5 border border-t-4 rounded flex-1 min-w-[250px] max-w-[350px] text-center flex flex-col sm:w-[250px] md:w-[270px] lg:w-[300px]",
+        'm-4 p-5 border border-t-4 rounded flex-1 min-w-[250px] max-w-[350px] text-center flex flex-col sm:w-[250px] md:w-[270px] lg:w-[300px]',
         pricingColor.mainDivClassName
       )}
     >
@@ -30,7 +30,7 @@ const PricingPlan: types.Brick<PricingPlanProps> = ({
             renderBlock={(props) => (
               <div
                 className={classNames(
-                  "px-2 pt-px pb-1 rounded-b text-xs font-bold uppercase text-white -mt-5",
+                  'px-2 pt-px pb-1 rounded-b text-xs font-bold uppercase text-white -mt-5',
                   pricingColor.popularTagClassName
                 )}
               >
@@ -47,7 +47,7 @@ const PricingPlan: types.Brick<PricingPlanProps> = ({
           renderBlock={(props) => (
             <h2
               className={classNames(
-                "text-2xl font-bold mb-4",
+                'text-2xl font-bold mb-4',
                 pricingColor.planNameClassName
               )}
             >
@@ -60,7 +60,9 @@ const PricingPlan: types.Brick<PricingPlanProps> = ({
 
         <RichText
           renderBlock={(props) => (
-            <p className="text-lg text-gray-600">{props.children}</p>
+            <p className={classNames('text-lg', textColors.GRAY_600)}>
+              {props.children}
+            </p>
           )}
           placeholder="Description..."
           propName="planDescription"
@@ -69,7 +71,12 @@ const PricingPlan: types.Brick<PricingPlanProps> = ({
       <div className="text-center mb-4">
         <Text
           renderBlock={(props) => (
-            <strong className="block text-3xl font-bold pt-4">
+            <strong
+              className={classNames(
+                'block text-3xl font-bold pt-4 text-black',
+                textColors.GRAY_900
+              )}
+            >
               {props.children}
             </strong>
           )}
@@ -79,7 +86,9 @@ const PricingPlan: types.Brick<PricingPlanProps> = ({
 
         <Text
           renderBlock={(props) => (
-            <p className="text-gray-500 mb-2">{props.children}</p>
+            <p className={classNames('mb-2', textColors.GRAY_500)}>
+              {props.children}
+            </p>
           )}
           placeholder="per user / per month..."
           propName="planConditions"
@@ -88,8 +97,8 @@ const PricingPlan: types.Brick<PricingPlanProps> = ({
       <Link
         href={buttonLinkPath}
         className={classNames(
-          "cursor-pointer block mb-8",
-          "text-center text-lg py-2 px-3 sm:px-5 rounded hover:text-white font-medium border-2 hover:shadow-lg transition duration-200",
+          'cursor-pointer block mb-8',
+          'text-center text-lg py-2 px-3 sm:px-5 rounded hover:text-white font-medium border-2 hover:shadow-lg transition duration-200',
           pricingColor.buttonClassName
         )}
       >
@@ -102,7 +111,12 @@ const PricingPlan: types.Brick<PricingPlanProps> = ({
       <div className="flex-1 flex flex-col ">
         <Text
           renderBlock={(props) => (
-            <p className="text-sm text-gray-500 text-left mb-4">
+            <p
+              className={classNames(
+                'text-sm text-left mb-4',
+                textColors.GRAY_500
+              )}
+            >
               {props.children}
             </p>
           )}
@@ -110,7 +124,7 @@ const PricingPlan: types.Brick<PricingPlanProps> = ({
           propName="featuresTitle"
         />
 
-        <ul className="text-lg text-gray-700 text-left">
+        <ul className={classNames('text-lg text-left', textColors.GRAY_700)}>
           <Repeater
             propName="features"
             itemProps={{ pricingColor }}
@@ -121,44 +135,44 @@ const PricingPlan: types.Brick<PricingPlanProps> = ({
         </ul>
       </div>
     </div>
-  );
-};
+  )
+}
 
 PricingPlan.schema = {
   name: blockNames.PricingPlan,
-  label: "Plan",
-  category: "pricing",
+  label: 'Plan',
+  category: 'pricing',
   hideFromAddMenu: true,
   getDefaultProps: () => ({
-    popularTagText: "Most popular",
+    popularTagText: 'Most popular',
     withPopularTag: false,
     pricingColor: pricingColors.CYAN.value,
-    planName: "Entry",
-    planDescription: "For startups and teams starting using React Bricks.",
-    planPrice: "$ 99",
-    planConditions: "per app / month",
-    buttonText: "Get started",
-    buttonLinkPath: "/",
-    featuresTitle: "Everything in Community, plus:",
+    planName: 'Entry',
+    planDescription: 'For startups and teams starting using React Bricks.',
+    planPrice: '$ 99',
+    planConditions: 'per app / month',
+    buttonText: 'Get started',
+    buttonLinkPath: '/',
+    featuresTitle: 'Everything in Community, plus:',
     features: [
       {
-        featureText: "5 users included",
+        featureText: '5 users included',
       },
       {
-        featureText: "Up to 100 pages",
+        featureText: 'Up to 100 pages',
       },
       {
-        featureText: "Media library",
+        featureText: 'Media library',
         withTag: true,
-        tag: "Soon",
+        tag: 'Soon',
       },
     ],
   }),
   repeaterItems: [
     {
-      name: "features",
+      name: 'features',
       itemType: blockNames.PlanFeature,
-      itemLabel: "feature",
+      itemLabel: 'feature',
       min: 0,
       max: 15,
     },
@@ -166,16 +180,16 @@ PricingPlan.schema = {
   sideEditProps: [
     pricingColorsEditProps,
     {
-      name: "withPopularTag",
-      label: "Popular tag",
+      name: 'withPopularTag',
+      label: 'Popular tag',
       type: types.SideEditPropType.Boolean,
     },
     {
-      name: "buttonLinkPath",
-      label: "Button link",
+      name: 'buttonLinkPath',
+      label: 'Button link',
       type: types.SideEditPropType.Text,
     },
   ],
-};
+}
 
-export default PricingPlan;
+export default PricingPlan

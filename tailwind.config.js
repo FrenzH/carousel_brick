@@ -5,7 +5,7 @@ module.exports = {
   content: [
     './pages/**/*.tsx',
     './components/**/*.tsx',
-    './react-bricks/**/*.tsx',
+    './react-bricks/**/*.{ts,tsx}',
     './node_modules/react-bricks-ui/**/*.js',
   ],
   darkMode: 'class',

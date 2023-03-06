@@ -2,11 +2,10 @@ import jsonp from 'jsonp'
 import { validate } from 'email-validator'
 import React from 'react'
 import { types } from 'react-bricks/frontend'
-import { RichText, Text, Link, Repeater } from 'react-bricks/frontend'
+import { RichText, Text } from 'react-bricks/frontend'
 import blockNames from '../shared/blockNames'
 import Container, { Size } from '../shared/components/Container'
 import Section from '../shared/components/Section'
-import { FaThumbsUp } from 'react-icons/fa'
 import {
   containerSizeEditProps,
   neutralBackgroundColorsEditProps,
@@ -105,12 +104,12 @@ const NewsLetter: types.Brick<NewsletterProps> = ({
   return (
     <Section backgroundColor={backgroundColor}>
       <Container size={width}>
-        <div className="shadow-newsLetter p-[30px] rounded-[5px] dark:shadow dark:shadow-gray-500">
+        <div className="p-[30px] rounded-[5px] shadow-newsLetter dark:bg-white/10 dark:border dark:border-white/70">
           <div>
             <Text
               renderBlock={(props) => (
                 <h3
-                  className="mb-1 font-semibold leading-5 dark:text-gray-500"
+                  className="mb-1 font-semibold leading-5 dark:text-gray-300"
                   {...props.attributes}
                 >
                   {props.children}
@@ -124,7 +123,7 @@ const NewsLetter: types.Brick<NewsletterProps> = ({
               placeholder="Type a text..."
               renderBlock={(props) => (
                 <span
-                  className="text-sm leading-6 dark:text-white"
+                  className="text-sm leading-6 dark:text-gray-300"
                   {...props.attributes}
                 >
                   {props.children}
@@ -132,40 +131,38 @@ const NewsLetter: types.Brick<NewsletterProps> = ({
               )}
             />
           </div>
-          <div className="flex flex-1 items-center mt-3">
+          <div className="block items-center mt-3 sm:flex">
             {(status.status === 'IDLE' || status.status == 'ERROR') && (
-              <form className="mr-5  flex" onSubmit={handleSubmit}>
-                <div className="flex">
-                  <div className="relative">
-                    <svg
-                      viewBox="0 0 14 14"
-                      width="14px"
-                      height="14px"
-                      className="absolute left-4 top-1/2 -mt-[7px] z-10"
-                    >
-                      <path
-                        fill="#9ca3af"
-                        d="M0 2.5c0-.27.22-.5.5-.5h13c.28 0 .5.23.5.5v9a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5v-9Zm1 1.02V11h12V3.52L7.31 7.89a.5.5 0 0 1-.52.07.5.5 0 0 1-.1-.07L1 3.52ZM12.03 3H1.97L7 6.87 12.03 3Z"
-                      ></path>
-                    </svg>
-                    <div>
-                      <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="Your email"
-                        className="border dark:bg-gray-500 dark:border-gray-500 focus:outline-none rounded-l-[5px] py-2.5 px-[15px] pl-10 text-sm focus:border-sky-500 dark:focus:border-sky-700 "
-                      />
-                    </div>
+              <form className="mr-5 sm:mb-0 mb-3 flex" onSubmit={handleSubmit}>
+                <div className="relative sm:w-full w-[200px]">
+                  <svg
+                    viewBox="0 0 14 14"
+                    width="14px"
+                    height="14px"
+                    className="absolute left-4 top-1/2 -mt-[7px] z-10"
+                  >
+                    <path
+                      fill="#9ca3af"
+                      d="M0 2.5c0-.27.22-.5.5-.5h13c.28 0 .5.23.5.5v9a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5v-9Zm1 1.02V11h12V3.52L7.31 7.89a.5.5 0 0 1-.52.07.5.5 0 0 1-.1-.07L1 3.52ZM12.03 3H1.97L7 6.87 12.03 3Z"
+                    ></path>
+                  </svg>
+                  <div>
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Your email"
+                      className="focus:outline-none dark:bg-black/20 rounded-l-[5px] py-2.5 px-[15px] pl-10 text-sm dark:text-white border border-r-0 dark:border-white/20 focus:border-sky-500 dark:focus:border-sky-700"
+                    />
                   </div>
                 </div>
                 <button
                   type="submit"
-                  className="rounded-r-[5px] min-w-[80px] dark:bg-sky-700 text-white align-top bg-sky-500 py-[9px] px-[20px] text-center relative cursor-pointer transition-all ease-out hover:-translate-y-[2px] hover:shadow-lg duration-150"
+                  className="rounded-r-[5px] z-11 relative text-white text-center bg-sky-500 py-[9px] px-[20px] transition-all ease-out hover:-translate-y-[2px] hover:shadow-lg duration-150"
                 >
                   <Text
                     propName="buttonText"
-                    placeholder="Action..."
+                    placeholder="Actio"
                     renderBlock={(props) => (
                       <span
                         className="text-center dark:text-white"
@@ -180,7 +177,7 @@ const NewsLetter: types.Brick<NewsletterProps> = ({
             )}
 
             {status.status === 'SUCCESS' && (
-              <div className="p-2.5 text-sm font-bold bg-green-200 mr-5 rounded-[5px] min-w-[270px] text-center">
+              <div className="p-2.5 mr-5 text-sm text-center font-bold bg-green-200 rounded-[5px] min-w-[270px]">
                 👍
                 {resultOkText}
               </div>
@@ -191,7 +188,7 @@ const NewsLetter: types.Brick<NewsletterProps> = ({
                 propName="text2"
                 placeholder="Type a text..."
                 renderBlock={({ children }) => (
-                  <p className="text-gray-500 min-w-[100px] text-sm leading-[18px]">
+                  <p className="text-gray-500 dark:text-gray-300 text-sm leading-[18px] min-w-[100px]">
                     {children}
                   </p>
                 )}
