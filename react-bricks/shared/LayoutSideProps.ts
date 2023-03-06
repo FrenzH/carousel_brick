@@ -1,4 +1,4 @@
-import { types } from 'react-bricks/frontend'
+import { types } from "react-bricks/frontend";
 import {
   highlightTextColors,
   bgColors,
@@ -6,22 +6,22 @@ import {
   buttonColors,
   gradients,
   pricingColors,
-} from './colors'
-import { Padding, Size } from './components/Container'
-import { Border } from './components/Section'
+} from "./colors";
+import { Padding, Size } from "./components/Container";
+import { Border } from "./components/Section";
 
 export interface LayoutProps {
-  backgroundColor?: { color: string; className: string }
-  borderTop: Border
-  borderBottom: Border
-  width?: Size
-  paddingTop: Padding
-  paddingBottom: Padding
+  backgroundColor?: { color: string; className: string };
+  borderTop: Border;
+  borderBottom: Border;
+  width?: Size;
+  paddingTop: Padding;
+  paddingBottom: Padding;
 }
 
 export const backgroundColorsEditProps: types.ISideEditProp = {
-  name: 'backgroundColor',
-  label: 'Background',
+  name: "backgroundColor",
+  label: "Background",
   type: types.SideEditPropType.Select,
   selectOptions: {
     display: types.OptionsDisplay.Color,
@@ -47,11 +47,11 @@ export const backgroundColorsEditProps: types.ISideEditProp = {
       bgColors.DARK_GRAY,
     ],
   },
-}
+};
 
 export const neutralBackgroundColorsEditProps: types.ISideEditProp = {
-  name: 'backgroundColor',
-  label: 'Background',
+  name: "backgroundColor",
+  label: "Background",
   type: types.SideEditPropType.Select,
   selectOptions: {
     display: types.OptionsDisplay.Color,
@@ -62,132 +62,136 @@ export const neutralBackgroundColorsEditProps: types.ISideEditProp = {
       bgColors.DARK_GRAY,
     ],
   },
-}
+};
 
 export const backgroundImageEditProps: types.ISideEditProp[] = [
   {
-    name: 'backgroundImage',
-    label: 'Background Image',
+    name: "backgroundImage",
+    label: "Background Image",
     type: types.SideEditPropType.Image,
     imageOptions: {
       aspectRatio: 2,
     },
   },
   {
-    name: 'backgroundImageDark',
-    label: 'Background Image Dark',
+    name: "backgroundImageDark",
+    label: "Background Image Dark",
     type: types.SideEditPropType.Image,
     imageOptions: {
       aspectRatio: 2,
     },
   },
-]
+];
 
 export const sectionPaddingsEditProps: types.ISideEditProp[] = [
   {
-    name: 'paddingTop',
-    label: 'Padding Top',
+    name: "paddingTop",
+    label: "Padding Top",
     type: types.SideEditPropType.Select,
     selectOptions: {
       display: types.OptionsDisplay.Select,
       options: [
-        { value: 'thick', label: 'Thick' },
-        { value: 'medium', label: 'Medium' },
-        { value: 'small', label: 'Small' },
-        { value: 'thin', label: 'Thin' },
-        { value: 'none', label: 'None' },
+        { value: "20", label: "20" },
+        { value: "16", label: "16" },
+        { value: "12", label: "12" },
+        { value: "10", label: "10" },
+        { value: "8", label: "8" },
+        { value: "6", label: "6" },
+        { value: "0", label: "None" },
       ],
     },
   },
   {
-    name: 'paddingBottom',
-    label: 'Padding Bottom',
+    name: "paddingBottom",
+    label: "Padding Bottom",
     type: types.SideEditPropType.Select,
     selectOptions: {
       display: types.OptionsDisplay.Select,
       options: [
-        { value: 'thick', label: 'Thick' },
-        { value: 'medium', label: 'Medium' },
-        { value: 'small', label: 'Small' },
-        { value: 'thin', label: 'Thin' },
-        { value: 'none', label: 'None' },
+        { value: "20", label: "20" },
+        { value: "16", label: "16" },
+        { value: "12", label: "12" },
+        { value: "10", label: "10" },
+        { value: "8", label: "8" },
+        { value: "6", label: "6" },
+        { value: "0", label: "None" },
       ],
     },
   },
-]
+];
 
 export const borderTopEditProp: types.ISideEditProp = {
-  name: 'borderTop',
-  label: 'Border Top',
+  name: "borderTop",
+  label: "Border Top",
   type: types.SideEditPropType.Select,
   selectOptions: {
     display: types.OptionsDisplay.Select,
     options: [
-      { value: 'none', label: 'None' },
-      { value: 'full', label: 'Full-width' },
-      { value: 'boxed', label: 'Boxed' },
+      { value: "none", label: "None" },
+      { value: "full", label: "Full-width" },
+      { value: "boxed", label: "Boxed" },
     ],
   },
-}
+};
 
 export const borderBottomEditProp: types.ISideEditProp = {
-  name: 'borderBottom',
-  label: 'Border Bottom',
+  name: "borderBottom",
+  label: "Border Bottom",
   type: types.SideEditPropType.Select,
   selectOptions: {
     display: types.OptionsDisplay.Select,
     options: [
-      { value: 'none', label: 'None' },
-      { value: 'full', label: 'Full-width' },
-      { value: 'boxed', label: 'Boxed' },
+      { value: "none", label: "None" },
+      { value: "full", label: "Full-width" },
+      { value: "boxed", label: "Boxed" },
     ],
   },
-}
+};
 
 export const sectionBordersEditProps: types.ISideEditProp[] = [
   borderTopEditProp,
   borderBottomEditProp,
-]
+];
 
 export const sectionDefaults = {
   backgroundColor: bgColors.WHITE,
-  paddingTop: 'medium',
-  paddingBottom: 'medium',
-  borderTop: 'none',
-  borderBottom: 'none',
-}
+  paddingTop: "16",
+  paddingBottom: "16",
+  borderTop: "none",
+  borderBottom: "none",
+};
 
 export const containerSizeEditProps: types.ISideEditProp = {
-  name: 'width',
-  label: 'Width',
+  name: "width",
+  label: "Width",
   type: types.SideEditPropType.Select,
   selectOptions: {
     display: types.OptionsDisplay.Select,
     options: [
-      { value: 'medium', label: 'Medium' },
-      { value: 'small', label: 'Small' },
+      { value: "medium", label: "Medium" },
+      { value: "small", label: "Small" },
       // { value: 'full', label: 'Full-width' },
     ],
   },
-}
+};
 
 export const containerSizeEditPropsWithFull: types.ISideEditProp = {
-  name: 'width',
-  label: 'Width',
+  name: "width",
+  label: "Width",
   type: types.SideEditPropType.Select,
   selectOptions: {
     display: types.OptionsDisplay.Select,
     options: [
-      { value: 'medium', label: 'Medium' },
-      { value: 'small', label: 'Small' },
-      { value: 'full', label: 'Full-width' },
+      { value: "medium", label: "Medium" },
+      { value: "small", label: "Small" },
+      { value: "full", label: "Full-width" },
     ],
   },
-}
+};
 
 export const badgeColorsEditProps = {
-  name: 'badgeColor',
-  label: 'Badge Color',
+  name: "badgeColor",
+  label: "Badge Color",
   type: types.SideEditPropType.Select,
   shouldRefreshText: true,
   selectOptions: {
@@ -213,11 +217,11 @@ export const badgeColorsEditProps = {
       highlightTextColors.ROSE,
     ],
   },
-}
+};
 
 export const bulletColorsEditProps = {
-  name: 'bulletColor',
-  label: 'Bullet Color',
+  name: "bulletColor",
+  label: "Bullet Color",
   type: types.SideEditPropType.Select,
   shouldRefreshText: true,
   selectOptions: {
@@ -243,11 +247,11 @@ export const bulletColorsEditProps = {
       highlightBgColors.ROSE,
     ],
   },
-}
+};
 
 export const buttonColorsEditProps = {
-  name: 'buttonColor',
-  label: 'Button Color',
+  name: "buttonColor",
+  label: "Button Color",
   type: types.SideEditPropType.Select,
   shouldRefreshText: true,
   selectOptions: {
@@ -273,11 +277,11 @@ export const buttonColorsEditProps = {
       buttonColors.ROSE,
     ],
   },
-}
+};
 
 export const highlightTextEditProps = {
-  name: 'highlightTextColor',
-  label: 'Highlight Color',
+  name: "highlightTextColor",
+  label: "Highlight Color",
   type: types.SideEditPropType.Select,
   shouldRefreshText: true,
   selectOptions: {
@@ -303,11 +307,11 @@ export const highlightTextEditProps = {
       highlightTextColors.ROSE,
     ],
   },
-}
+};
 
 export const textGradientEditProps = {
-  name: 'textGradient',
-  label: 'Text gradient',
+  name: "textGradient",
+  label: "Text gradient",
   type: types.SideEditPropType.Select,
   selectOptions: {
     display: types.OptionsDisplay.Select,
@@ -328,11 +332,11 @@ export const textGradientEditProps = {
       gradients.LIGHTHOUSE,
     ],
   },
-}
+};
 
 export const pricingColorsEditProps: types.ISideEditProp = {
-  name: 'pricingColor',
-  label: 'Color',
+  name: "pricingColor",
+  label: "Color",
   type: types.SideEditPropType.Select,
   shouldRefreshStyles: true,
   selectOptions: {
@@ -358,4 +362,4 @@ export const pricingColorsEditProps: types.ISideEditProp = {
       pricingColors.ROSE,
     ],
   },
-}
+};
