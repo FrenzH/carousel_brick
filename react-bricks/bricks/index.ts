@@ -1,19 +1,19 @@
-import { types } from 'react-bricks/frontend'
-import website from 'react-bricks-ui/website'
-import blog from 'react-bricks-ui/blog'
-import ThumbBrick from './ThumbBrick'
-import CarouselBrick from './CarouselBrick'
-import ThumbBrickContainer from './ThumbBrickContainer'
-import ThumbLink from './ThumbLink'
-import ThumbLinkContainer from './ThumbLinkContainer'
-import PricingPlan from './PlanBrick'
-import Pricing from './BusinessPlanBrick'
-import PlanFeature from './PlanFeatureBrick'
-import NewsLetter from './newsLetter'
-import Table from './Table'
-import TableCell from './TableCell'
-import TableRow from './TableRow'
-import CallToAction2 from './newsLetter2'
+import { types } from "react-bricks/frontend";
+import website from "react-bricks-ui/website";
+import blog from "react-bricks-ui/blog";
+import ThumbBrick from "./ThumbBrick";
+import CarouselBrick from "./CarouselBrick";
+import ThumbBrickContainer from "./ThumbBrickContainer";
+import ThumbLink from "./ThumbLink";
+import ThumbLinkContainer from "./ThumbLinkContainer";
+import PricingPlan from "./PricingPlan";
+import Pricing from "./Pricing";
+import PlanFeature from "./PlanFeature";
+import NewsLetter from "./newsLetter";
+import Table from "./Table";
+import TableCell from "./TableCell";
+import TableRow from "./TableRow";
+import CallToAction2 from "./newsLetter2";
 const bricks: types.Brick<any>[] = [
   ...website, // React Bricks UI
   ...blog,
@@ -32,6 +32,6 @@ const bricks: types.Brick<any>[] = [
   CallToAction2,
   // Example custom brick
   // Put here your other bricks...
-]
+];
 
-export default bricks
+export default bricks;
