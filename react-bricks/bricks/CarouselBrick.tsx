@@ -1,25 +1,25 @@
-import React, { useEffect, useState } from "react";
-import { Repeater, types } from "react-bricks/frontend";
-import Slider from "react-slick";
-import Container, { Size } from "./layout/Container";
-import Section from "./layout/Section";
+import React, { useEffect, useState } from 'react'
+import { Repeater, types } from 'react-bricks/frontend'
+import Slider from 'react-slick'
+import Container, { Size } from './layout/Container'
+import Section from './layout/Section'
 import {
   BackgroundColorsSideEditProps,
   ContainerSizeSideEditProps,
-} from "./layout/LayoutSideProps";
-import blockNames from "./layout/blockNames";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+} from './layout/LayoutSideProps'
+import blockNames from './layout/blockNames'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 
 interface ImageCarouselProps {
-  bg?: { color: string; className: string };
-  width?: Size;
-  slidesToRender: string;
-  scrollSlides: string;
-  isPlaying: string;
-  speed: string;
-  className: string;
-  gap: string;
+  bg?: { color: string; className: string }
+  width?: Size
+  slidesToRender: string
+  scrollSlides: string
+  isPlaying: string
+  speed: string
+  className: string
+  gap: string
 }
 
 const CarouselBrick: types.Brick<ImageCarouselProps> = ({
@@ -36,22 +36,22 @@ const CarouselBrick: types.Brick<ImageCarouselProps> = ({
     arrows: false,
     infinite: true,
     draggable: true,
-    autoplay: isPlaying === "true" ? true : false,
+    autoplay: isPlaying === 'true' ? true : false,
     autoplaySpeed: parseInt(speed) * 1000,
     touchThreshold: 1000,
     slidesToShow: parseInt(slidesToRender),
     slidesToScroll: parseInt(scrollSlides),
     accessibility: true,
-  };
+  }
 
-  const repeaterElement = Repeater({ propName: "singleImage" });
-  const [hasMount, setHasMount] = useState(false);
+  const repeaterElement = Repeater({ propName: 'singleImage' })
+  const [hasMount, setHasMount] = useState(false)
   useEffect(() => {
-    setHasMount(true);
-  }, []);
+    setHasMount(true)
+  }, [])
 
   if (!hasMount) {
-    return null;
+    return null
   }
 
   return (
@@ -59,10 +59,10 @@ const CarouselBrick: types.Brick<ImageCarouselProps> = ({
       <Container size={width}>
         <style>{`
 
-        .dark div div ul li button:before{
+        .dark .slick-dots li button:before{
           color:white
         }
-        .dark div div ul li.slick-active button:before{
+        .dark .slick-dots li.slick-active button:before{
           color:white
         }
         .slick-track{
@@ -79,135 +79,135 @@ const CarouselBrick: types.Brick<ImageCarouselProps> = ({
               <div key={index} className="p-0 overflow-hidden ">
                 {child}
               </div>
-            );
+            )
           })}
         </Slider>
       </Container>
     </Section>
-  );
-};
+  )
+}
 
 CarouselBrick.schema = {
-  name: "CarouselBrick",
-  label: "carousel",
-  category: "rb-ui website",
+  name: 'CarouselBrick',
+  label: 'carousel',
+  category: 'rb-ui website',
   getDefaultProps: () => ({
     slidesToRender: 1,
     scrollSlides: 1,
-    isPlaying: "true",
+    isPlaying: 'true',
     speed: 3,
-    gap: "30px",
+    gap: '30px',
 
     singleImage: [
       {
         image: {
-          src: "https://images.reactbricks.com/original/8309ea05-d105-4f50-9d54-ba86ebddcfbe.jpg",
+          src: 'https://images.reactbricks.com/original/8309ea05-d105-4f50-9d54-ba86ebddcfbe.jpg',
           placeholderSrc:
-            "https://images.reactbricks.com/placeholder/8309ea05-d105-4f50-9d54-ba86ebddcfbe.jpg",
+            'https://images.reactbricks.com/placeholder/8309ea05-d105-4f50-9d54-ba86ebddcfbe.jpg',
           srcSet:
-            "https://images.reactbricks.com/src_set/8309ea05-d105-4f50-9d54-ba86ebddcfbe-2400.jpg 2400w,\nhttps://images.reactbricks.com/src_set/8309ea05-d105-4f50-9d54-ba86ebddcfbe-1800.jpg 1800w,\nhttps://images.reactbricks.com/src_set/8309ea05-d105-4f50-9d54-ba86ebddcfbe-1200.jpg 1200w,\nhttps://images.reactbricks.com/src_set/8309ea05-d105-4f50-9d54-ba86ebddcfbe-600.jpg 600w,\nhttps://images.reactbricks.com/src_set/8309ea05-d105-4f50-9d54-ba86ebddcfbe-300.jpg 300w",
+            'https://images.reactbricks.com/src_set/8309ea05-d105-4f50-9d54-ba86ebddcfbe-2400.jpg 2400w,\nhttps://images.reactbricks.com/src_set/8309ea05-d105-4f50-9d54-ba86ebddcfbe-1800.jpg 1800w,\nhttps://images.reactbricks.com/src_set/8309ea05-d105-4f50-9d54-ba86ebddcfbe-1200.jpg 1200w,\nhttps://images.reactbricks.com/src_set/8309ea05-d105-4f50-9d54-ba86ebddcfbe-600.jpg 600w,\nhttps://images.reactbricks.com/src_set/8309ea05-d105-4f50-9d54-ba86ebddcfbe-300.jpg 300w',
           width: 3385,
           height: 1693,
-          alt: "altText",
-          seoName: "",
+          alt: 'altText',
+          seoName: '',
         },
       },
     ],
   }),
   repeaterItems: [
     {
-      name: "singleImage",
+      name: 'singleImage',
       itemType: blockNames.SingleImage,
-      itemLabel: "Image",
+      itemLabel: 'Image',
       min: 1,
       max: 5,
     },
   ],
   sideEditProps: [
     {
-      groupName: "Layout",
+      groupName: 'Layout',
       defaultOpen: true,
       props: [BackgroundColorsSideEditProps, ContainerSizeSideEditProps],
     },
     {
-      groupName: "carousel",
+      groupName: 'carousel',
       props: [
         {
-          name: "slidesToRender",
-          label: "slides number",
+          name: 'slidesToRender',
+          label: 'slides number',
           type: types.SideEditPropType.Select,
           selectOptions: {
             display: types.OptionsDisplay.Select,
             options: [
-              { value: 1, label: "1" },
-              { value: 2, label: "2" },
-              { value: 3, label: "3" },
-              { value: 4, label: "4" },
+              { value: 1, label: '1' },
+              { value: 2, label: '2' },
+              { value: 3, label: '3' },
+              { value: 4, label: '4' },
             ],
           },
         },
         {
-          name: "scrollSlides",
-          label: "slides to scroll",
+          name: 'scrollSlides',
+          label: 'slides to scroll',
           type: types.SideEditPropType.Select,
           selectOptions: {
             display: types.OptionsDisplay.Select,
             options: [
-              { value: 1, label: "1" },
-              { value: 2, label: "2" },
-              { value: 3, label: "3" },
-              { value: 4, label: "4" },
+              { value: 1, label: '1' },
+              { value: 2, label: '2' },
+              { value: 3, label: '3' },
+              { value: 4, label: '4' },
             ],
           },
         },
         {
-          name: "isPlaying",
-          label: "Play carousel",
+          name: 'isPlaying',
+          label: 'Play carousel',
           type: types.SideEditPropType.Select,
           selectOptions: {
             display: types.OptionsDisplay.Radio,
             options: [
-              { value: "true", label: "yes" },
-              { value: "false", label: "no" },
+              { value: 'true', label: 'yes' },
+              { value: 'false', label: 'no' },
             ],
           },
         },
         {
-          name: "speed",
-          label: "speed",
+          name: 'speed',
+          label: 'speed',
           type: types.SideEditPropType.Select,
           selectOptions: {
             display: types.OptionsDisplay.Select,
             options: [
-              { value: 1, label: "1 s" },
-              { value: 2, label: "2 s" },
-              { value: 3, label: "3 s" },
-              { value: 4, label: "4 s" },
-              { value: 5, label: "5 s" },
+              { value: 1, label: '1 s' },
+              { value: 2, label: '2 s' },
+              { value: 3, label: '3 s' },
+              { value: 4, label: '4 s' },
+              { value: 5, label: '5 s' },
             ],
           },
         },
         {
-          name: "gap",
-          label: "gap",
+          name: 'gap',
+          label: 'gap',
           show: (props: ImageCarouselProps) => {
-            if (props.slidesToRender != "1") return true;
-            else return false;
+            if (props.slidesToRender != '1') return true
+            else return false
           },
           type: types.SideEditPropType.Select,
           selectOptions: {
             display: types.OptionsDisplay.Select,
             options: [
-              { value: "0px", label: "none" },
-              { value: "15px", label: "small" },
-              { value: "30px", label: "medium" },
-              { value: "50px", label: "large" },
+              { value: '0px', label: 'none' },
+              { value: '15px', label: 'small' },
+              { value: '30px', label: 'medium' },
+              { value: '50px', label: 'large' },
             ],
           },
         },
       ],
     },
   ],
-};
+}
 
-export default CarouselBrick;
+export default CarouselBrick
