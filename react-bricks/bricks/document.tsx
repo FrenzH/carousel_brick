@@ -1,39 +1,38 @@
-import classNames from 'classnames'
-import React from 'react'
-import { File, types, Image, Text, RichText, Link } from 'react-bricks/frontend'
-import { FiFilePlus } from 'react-icons/fi'
+import classNames from "classnames";
+import React from "react";
+import { File, types, Text, RichText } from "react-bricks/frontend";
 //import blockNames from '../blockNames'
-import { AiOutlineFileAdd } from 'react-icons/ai'
-import { FcDownload } from 'react-icons/fc'
-import { FcDocument } from 'react-icons/fc'
+import { AiOutlineFileAdd } from "react-icons/ai";
+import { FcDownload } from "react-icons/fc";
+import { FcDocument } from "react-icons/fc";
 export interface DocumentProps {
-  color?: { color: string; className: string }
-  withSize?: boolean
+  color?: { color: string; className: string };
+  withSize?: boolean;
 }
 
 const Document: types.Brick<DocumentProps> = ({ withSize }) => {
   function formatBytes(file) {
-    if (!file) return '0 Bytes'
-    const k = 1000
-    const dm = 1
-    const sizes = ['KB', 'MB']
-    const i = Math.floor(Math.log(file) / Math.log(k))
-    return `${parseFloat((file / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`
+    if (!file) return "0 Bytes";
+    const k = 1000;
+    const dm = 1;
+    const sizes = ["KB", "MB"];
+    const i = Math.floor(Math.log(file) / Math.log(k));
+    return `${parseFloat((file / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
   }
 
   return (
     <div className="p-7 flex border border-black/10 dark:border-white/10 bg-white dark:bg-white/10 rounded">
       <File
         propName="file"
-        allowedExtensions={['.pdf']}
+        allowedExtensions={[".pdf"]}
         renderBlock={(file) => {
           {
-            console.log(file)
+            console.log(file);
           }
           return file ? (
             <div className="flex">
               <div className="text-center text-xs text-gray-600 font-semibold mr-4 pt-1 dark:text-white/60">
-                <FcDocument size={'40px'} />
+                <FcDocument size={"40px"} />
                 {withSize ? formatBytes(file.size) : null}
               </div>
 
@@ -67,7 +66,7 @@ const Document: types.Brick<DocumentProps> = ({ withSize }) => {
                   target="_blank"
                   href={file.url}
                   className={
-                    'w-full mt-2 flex items-center text-sky-500 hover:text-sky-600 text-sky-500 dark:hover:text-sky-400 hover:-translate-y-px transition-all ease-out duration-150'
+                    "w-full mt-2 flex items-center text-sky-500 hover:text-sky-600 text-sky-500 dark:hover:text-sky-400 hover:-translate-y-px transition-all ease-out duration-150"
                   }
                 >
                   <Text
@@ -89,43 +88,43 @@ const Document: types.Brick<DocumentProps> = ({ withSize }) => {
             <div className="flex font-semibold h-full items-center dark:text-white">
               <AiOutlineFileAdd
                 className="mr-2 text-sky-500 dark:text-sky-400"
-                size={'40px'}
+                size={"40px"}
               />
               Add document
             </div>
-          )
+          );
         }}
       />
     </div>
-  )
-}
+  );
+};
 
 Document.schema = {
-  name: 'Document',
-  label: 'Document',
-  category: 'rb-ui website',
+  name: "Document",
+  label: "Document",
+  category: "rb-ui website",
   hideFromAddMenu: true,
-  playgroundLinkLabel: 'View source code on Github',
+  playgroundLinkLabel: "View source code on Github",
   playgroundLinkUrl:
-    'https://github.com/ReactBricks/react-bricks-ui/blob/master/src/website/Documents/Document.tsx',
+    "https://github.com/ReactBricks/react-bricks-ui/blob/master/src/website/Documents/Document.tsx",
   getDefaultProps: () => ({
-    fileName: 'fileName.pdf',
-    fileDescription: 'file description',
-    linkText: 'Download now',
+    fileName: "fileName.pdf",
+    fileDescription: "file description",
+    linkText: "Download now",
   }),
   sideEditProps: [
     {
-      name: 'fileDescription',
-      label: 'file description',
+      name: "fileDescription",
+      label: "file description",
       type: types.SideEditPropType.Textarea,
     },
-    { name: 'fileName', label: 'file name', type: types.SideEditPropType.Text },
+    { name: "fileName", label: "file name", type: types.SideEditPropType.Text },
     {
-      name: 'withSize',
-      label: 'document size',
+      name: "withSize",
+      label: "document size",
       type: types.SideEditPropType.Boolean,
     },
-    { name: 'linkText', label: 'link text', type: types.SideEditPropType.Text },
+    { name: "linkText", label: "link text", type: types.SideEditPropType.Text },
   ],
-}
-export default Document
+};
+export default Document;
