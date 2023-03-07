@@ -16,6 +16,8 @@ import TableRow from './TableRow'
 import CallToAction2 from './newsLetter2'
 import TeamList from './Team'
 import TeamListItem from './TeamListItem'
+import Document from './document'
+import Documents from './documents'
 const bricks: types.Brick<any>[] = [
   ...website, // React Bricks UI
   ...blog,
@@ -34,6 +36,8 @@ const bricks: types.Brick<any>[] = [
   CallToAction2,
   TeamList,
   TeamListItem,
+  Document,
+  Documents,
   // Example custom brick
   // Put here your other bricks...
 ]
