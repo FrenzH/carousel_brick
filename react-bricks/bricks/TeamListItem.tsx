@@ -1,70 +1,56 @@
-import * as React from 'react'
+import React from 'react'
 import { Image, types, Text } from 'react-bricks/frontend'
-import { FiTwitter, FiLinkedin, FiGithub } from 'react-icons/fi'
+import classNames from 'classnames'
 
-export interface TeamListItemProps {
-  twitter?: string
-  github?: string
-  linkedin?: string
-}
+export interface TeamListItemProps {}
 
-const TeamListItem: types.Brick<TeamListItemProps> = ({
-  twitter,
-  github,
-  linkedin,
-}) => {
+const TeamListItem: types.Brick<TeamListItemProps> = ({}) => {
   return (
-    <div className="mr-[5%] mb-[20px]">
+    <div className="flex flex-col items-center">
       <Image
         propName="picture"
         alt="team-item"
-        imageClassName="w-20 h-20 rounded-full"
-        renderWrapper={({ children }) => (
-          <div className="block mb-1">{children}</div>
+        aspectRatio={1}
+        imageClassName={classNames(
+          'block w-[72px] h-[72px] object-contain rounded-full shadow-lg mb-1'
         )}
       />
 
       <Text
         renderBlock={(props) => (
-          <div className="text-sm font-bold mb-1">{props.children}</div>
+          <div
+            className="mb-1 text-sm font-bold text-center text-gray-800
+            dark:text-white/90 min-w-[70px]"
+          >
+            {props.children}
+          </div>
         )}
-        placeholder="Member name..."
+        placeholder="name..."
         propName="memberName"
       />
       <Text
-        renderBlock={(props) => <div className="text-xs">{props.children}</div>}
-        placeholder="Role"
+        renderBlock={(props) => (
+          <div className="text-xs font-semibold text-center text-gray-600 dark:text-white/70 min-w-[70px]">
+            {props.children}
+          </div>
+        )}
+        placeholder="role..."
         propName="role"
       />
+      <div>3 icons social</div>
+      {/* transition-all ease-out duration-150 hover:-translate-y-[2px] */}
     </div>
   )
 }
 
 TeamListItem.schema = {
-  name: 'TeamListItem',
+  name: 'teamListItem',
   label: 'Team list Item',
   category: 'rb-ui website',
   hideFromAddMenu: false,
 
-  getDefaultProps: () => ({
-    memberName: 'Matteo Frana',
-    role: 'Frontend Designer',
-
-    picture: {
-      src: 'https://images.reactbricks.com/original/7e7dcf49-04c8-4494-ab4a-bab1f88056aa.jpg',
-      placeholderSrc:
-        'https://images.reactbricks.com/placeholder/7e7dcf49-04c8-4494-ab4a-bab1f88056aa.jpg',
-      srcSet:
-        'https://images.reactbricks.com/src_set/7e7dcf49-04c8-4494-ab4a-bab1f88056aa-400.jpg 400w,\nhttps://images.reactbricks.com/src_set/7e7dcf49-04c8-4494-ab4a-bab1f88056aa-200.jpg 200w',
-    },
-  }),
-  sideEditProps: [
-    {
-      groupName: 'Social Media',
-      defaultOpen: true,
-      props: [],
-    },
-  ],
+  getDefaultProps: () => ({}),
+  sideEditProps: [],
 }
 
 export default TeamListItem
