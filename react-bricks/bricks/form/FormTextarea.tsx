@@ -34,7 +34,7 @@ const FormTextarea: types.Brick<FormTextareaProps> = ({
         columns === "two" ? "col-span-2" : ""
       )}
     >
-      <span className="block text-gray-400 group-hover:text-sky-600 dark:group-hover:text-sky-300 font-medium uppercase tracking-widest text-sm peer-focus:text-sky-700">
+      <span className="block text-gray-600 mb-1 text-sm">
         {label} {isRequired && <span className="text-red-600">*</span>}
       </span>
 

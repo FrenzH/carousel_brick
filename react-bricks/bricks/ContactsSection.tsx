@@ -1,22 +1,22 @@
-import React from 'react'
-import classNames from 'classnames'
-import { Repeater, types, Text } from 'react-bricks/frontend'
+import React from "react";
+import classNames from "classnames";
+import { Repeater, types, Text } from "react-bricks/frontend";
 //import blockNames from '../blockNames'
-import TitleSubtitle from '../shared/components/TitleSubtitle'
-import Container from '../shared/components/Container'
-import Section from '../shared/components/Section'
-import { textColors } from '../shared/colors'
+import TitleSubtitle from "../shared/components/TitleSubtitle";
+import Container from "../shared/components/Container";
+import Section from "../shared/components/Section";
+import { textColors } from "../shared/colors";
 import {
   backgroundSideGroup,
   containerSizeEditProps,
   LayoutProps,
   paddingBordersSideGroup,
   sectionDefaults,
-} from '../shared/LayoutSideProps'
+} from "../shared/LayoutSideProps";
 export interface ContactsProps extends LayoutProps {
-  withTitle: boolean
-  bigCentered?: boolean
-  extraboldTitle?: boolean
+  withTitle: boolean;
+  bigCentered?: boolean;
+  extraboldTitle?: boolean;
 }
 
 const ContactSection: types.Brick<ContactsProps> = ({
@@ -54,38 +54,38 @@ const ContactSection: types.Brick<ContactsProps> = ({
         </div>
       </Container>
     </Section>
-  )
-}
+  );
+};
 
 ContactSection.schema = {
-  name: 'ContactsSection',
-  label: 'contacts section',
-  category: 'rb-ui website',
+  name: "ContactsSection",
+  label: "contacts section",
+  category: "rb-ui website",
   hideFromAddMenu: false,
-  playgroundLinkLabel: 'View source code on Github',
-  playgroundLinkUrl: '',
+  playgroundLinkLabel: "View source code on Github",
+  playgroundLinkUrl: "",
   getDefaultProps: () => ({
     withTitle: false,
     ...sectionDefaults,
-    title: 'Our offices',
+    title: "Our offices",
     subtitle:
-      'Varius facilisi mauris sed sit. Non sed et duis dui leo, vulputate id malesuada non. Cras aliquet purus dui laoreet diam sed lacus, fames.',
+      "Varius facilisi mauris sed sit. Non sed et duis dui leo, vulputate id malesuada non. Cras aliquet purus dui laoreet diam sed lacus, fames.",
     ContactItem: [
       {
-        contactTitle: 'Los Angeles',
-        contactAddress: '4556 Brendan Ferry\nLos Angeles, CA 90210',
+        contactTitle: "Los Angeles",
+        contactAddress: "4377 Koontz Lane\nLos Angeles, CA 90014",
       },
       {
-        contactTitle: 'New York',
-        contactAddress: '886 Walter Streets\nNew York, NY 12345',
+        contactTitle: "New York",
+        contactAddress: "2153 Shinn Street\nNew York, NY 10003",
       },
       {
-        contactTitle: 'Toronto',
-        contactAddress: '7363 Cynthia Pass\nToronto, ON N3Y 4H8',
+        contactTitle: "Toronto",
+        contactAddress: "2071 Irving Road\nToronto, ON N3Y 43964",
       },
       {
-        contactTitle: 'London',
-        contactAddress: '114 Cobble Lane\nLondon N1 2EF',
+        contactTitle: "London",
+        contactAddress: "1272 Old House Drive\nLondon N1 2EF",
       },
     ],
   }),
@@ -94,27 +94,27 @@ ContactSection.schema = {
     paddingBordersSideGroup,
     containerSizeEditProps,
     {
-      name: 'withTitle',
-      label: 'with title',
+      name: "withTitle",
+      label: "with title",
       type: types.SideEditPropType.Boolean,
     },
     {
-      name: 'bigCentered',
-      label: 'centered title',
+      name: "bigCentered",
+      label: "centered title",
       type: types.SideEditPropType.Boolean,
     },
     {
-      name: 'extraboldTitle',
-      label: 'extra bold title',
+      name: "extraboldTitle",
+      label: "extra bold title",
       type: types.SideEditPropType.Boolean,
     },
   ],
   repeaterItems: [
     {
-      name: 'ContactItem',
-      itemType: 'ContactItem',
-      itemLabel: 'contact',
+      name: "ContactItem",
+      itemType: "ContactItem",
+      itemLabel: "contact",
     },
   ],
-}
-export default ContactSection
+};
+export default ContactSection;
