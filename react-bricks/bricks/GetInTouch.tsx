@@ -84,16 +84,21 @@ const GetInTouch: types.Brick<GetInTouchProps> = ({
               <li className="flex gap-x-4 items-center">
                 <FcDepartment size={"28px"} />
 
-                <Text
-                  propName="address"
-                  placeholder="address..."
-                  multiline={true}
-                  renderBlock={(props) => (
-                    <span className="block min-w-[70px]" {...props.attributes}>
-                      {props.children}
-                    </span>
-                  )}
-                />
+                <div>
+                  <Text
+                    propName="address"
+                    placeholder="address..."
+                    multiline={true}
+                    renderBlock={(props) => (
+                      <span
+                        className="block min-w-[70px]"
+                        {...props.attributes}
+                      >
+                        {props.children}
+                      </span>
+                    )}
+                  />
+                </div>
               </li>
 
               <li>
@@ -129,19 +134,21 @@ const GetInTouch: types.Brick<GetInTouchProps> = ({
                     propName="email"
                     placeholder="email..."
                     renderBlock={(props) => (
-                      <span
-                        className="block min-w-[70px]"
-                        {...props.attributes}
-                      >
-                        {props.children}
-                      </span>
+                      <div>
+                        <span
+                          className="block min-w-[70px]"
+                          {...props.attributes}
+                        >
+                          {props.children}
+                        </span>
+                      </div>
                     )}
                   />
                 </a>
               </li>
             </ul>
           </div>
-          <div className="pt-20 pb-20 sm:pt-24 ">
+          <div className="pb-20 sm:pt-24 ">
             <Repeater propName="form" />
           </div>
         </div>
