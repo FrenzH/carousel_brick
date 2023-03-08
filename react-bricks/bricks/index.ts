@@ -20,6 +20,16 @@ import Document from "./document";
 import Documents from "./documents";
 import ContactSection from "./ContactsSection";
 import ContactItem from "./ContactItem";
+import FormBuilder from "./form/FormBuilder";
+import FormButton from "./form/FormButton";
+import FormCheckbox from "./form/FormCheckbox";
+import FormInput from "./form/FormInput";
+import FormRadiobuttons from "./form/FormRadiobuttons";
+import FormSelect from "./form/FormSelect";
+import FormSingleRadio from "./form/FormSingleRadio";
+import FormTextarea from "./form/FormTextarea";
+import GetInTouch from "./GetInTouch";
+
 const bricks: types.Brick<any>[] = [
   ...website, // React Bricks UI
   ...blog,
@@ -42,6 +52,16 @@ const bricks: types.Brick<any>[] = [
   Documents,
   ContactItem,
   ContactSection,
+  FormBuilder,
+  FormButton,
+  FormCheckbox,
+  FormInput,
+  FormRadiobuttons,
+  FormSelect,
+  FormSingleRadio,
+  FormTextarea,
+  GetInTouch,
+
   // Example custom brick
   // Put here your other bricks...
 ];
