@@ -10,9 +10,13 @@ import { backgroundColorsEditProps } from "../../shared/LayoutSideProps";
 
 export interface FormBuilderProps {
   backgroundColor?: { color: string; className: string };
+  buttonPosition: string;
 }
 
-const FormBuilder: types.Brick<FormBuilderProps> = ({ backgroundColor }) => {
+const FormBuilder: types.Brick<FormBuilderProps> = ({
+  backgroundColor,
+  buttonPosition,
+}) => {
   const {
     register,
     handleSubmit,
@@ -30,7 +34,12 @@ const FormBuilder: types.Brick<FormBuilderProps> = ({ backgroundColor }) => {
           <Repeater
             propName="form-buttons"
             renderWrapper={(items) => (
-              <div className="w-full flex justify-center space-x-6 col-span-2">
+              <div
+                className={classNames(
+                  "w-full flex space-x-6 col-span-2",
+                  buttonPosition
+                )}
+              >
                 {items}
               </div>
             )}
@@ -68,6 +77,7 @@ FormBuilder.schema = {
 
   getDefaultProps: () => ({
     backgroundColor: bgColors.WHITE.value,
+    buttonPosition: "justify-center",
     formTitle: [
       {
         type: "paragraph",
@@ -100,6 +110,19 @@ FormBuilder.schema = {
       groupName: "Layout",
       defaultOpen: false,
       props: [backgroundColorsEditProps],
+    },
+    {
+      name: "buttonPosition",
+      label: "button position",
+      type: types.SideEditPropType.Select,
+      selectOptions: {
+        display: types.OptionsDisplay.Select,
+        options: [
+          { value: "justify-center", label: "center" },
+          { value: "justify-start", label: "start" },
+          { value: "justify-end", label: "end" },
+        ],
+      },
     },
   ],
 };
