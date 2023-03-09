@@ -1,28 +1,29 @@
-import * as React from "react";
-import { types, Plain, Text } from "react-bricks/frontend";
-import { FieldErrorsImpl, UseFormRegister } from "react-hook-form";
-import clsx from "clsx";
-import blockNames from "../../shared/blockNames";
+import * as React from 'react'
+import { types, Plain, Text } from 'react-bricks/frontend'
+import { FieldErrorsImpl, UseFormRegister } from 'react-hook-form'
+import clsx from 'clsx'
+import blockNames from '../../shared/blockNames'
+import { useAdminContext } from 'react-bricks/frontend'
 
 export interface FormSelectProps {
-  register: UseFormRegister<any>;
-  fieldName?: string;
-  label: string;
-  values?: string;
-  isRequired: boolean;
-  key: string;
+  register: UseFormRegister<any>
+  fieldName?: string
+  label: string
+  values?: string
+  isRequired: boolean
+  key: string
   errors: FieldErrorsImpl<{
-    [x: string]: any;
-  }>;
-  requiredError?: string;
-  columns: "one" | "two";
+    [x: string]: any
+  }>
+  requiredError?: string
+  columns: 'one' | 'two'
 }
 
 const FormSelect: types.Brick<FormSelectProps> = ({
   values,
   isRequired,
   register,
-  fieldName = "select",
+  fieldName = 'select',
   label,
   key,
   errors,
@@ -30,117 +31,122 @@ const FormSelect: types.Brick<FormSelectProps> = ({
   columns,
 }) => {
   const labelTextContent =
-    typeof label === "string" ? label : Plain.serialize(label);
+    typeof label === 'string' ? label : Plain.serialize(label)
+  const { isAdmin } = useAdminContext()
   return (
-    <label
-      htmlFor={fieldName}
+    <div
       className={clsx(
-        "px-2 py-1 group block",
-        columns === "two" && "col-span-2"
+        'px-2 py-1 group block',
+        columns === 'two' && 'col-span-2'
       )}
     >
-      <label
-        className={clsx(
-          isRequired
-            ? labelTextContent === ""
-              ? "block w-full"
-              : "flex gap-x-1"
-            : "block w-full"
-        )}
-      >
-        <Text
-          propName="label"
-          placeholder="label..."
-          renderBlock={(props) => (
-            <span className="text-gray-600 mb-1 text-sm" {...props.attributes}>
-              {props.children}
-            </span>
+      <label htmlFor={isAdmin ? '' : fieldName}>
+        <span
+          className={clsx(
+            isRequired
+              ? labelTextContent === ''
+                ? 'block w-full'
+                : 'flex gap-x-1'
+              : 'block w-full'
           )}
-        />
+        >
+          <Text
+            propName="label"
+            placeholder="label..."
+            renderBlock={(props) => (
+              <span
+                className="text-gray-600 mb-1 text-sm"
+                {...props.attributes}
+              >
+                {props.children}
+              </span>
+            )}
+          />
 
-        {isRequired &&
-          (labelTextContent === "" ? null : (
-            <span className="text-red-600">*</span>
-          ))}
+          {isRequired &&
+            (labelTextContent === '' ? null : (
+              <span className="text-red-600">*</span>
+            ))}
+        </span>
       </label>
       <select
         className="block w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg outline-none focus:ring-1 ring-sky-500 focus:shadow-sky-200 dark:focus:shadow-sky-900 focus:shadow-lg"
-        {...register(fieldName?.replace(/\s/g, "").toLowerCase() || key)}
+        {...register(fieldName?.replace(/\s/g, '').toLowerCase() || key)}
       >
-        {values?.split("\n").map((valuelabel, index) => {
-          const [value, label] = valuelabel.trim().split(":");
+        {values?.split('\n').map((valuelabel, index) => {
+          const [value, label] = valuelabel.trim().split(':')
           if (label) {
             return (
               <option key={index} value={value}>
                 {label.trim()}
               </option>
-            );
+            )
           }
           return (
             <option key={index} value={value}>
               {value}
             </option>
-          );
+          )
         })}
       </select>
       {errors[fieldName] && (
         <span className="block mt-2 text-xs text-red-500 font-bold">
-          {errors[fieldName]?.type === "required" && requiredError}
+          {errors[fieldName]?.type === 'required' && requiredError}
         </span>
       )}
-    </label>
-  );
-};
+    </div>
+  )
+}
 
 FormSelect.schema = {
   name: blockNames.FormSelect,
-  label: "Form Select",
-  category: "Tailblock Select",
+  label: 'Form Select',
+  category: 'Tailblock Select',
   hideFromAddMenu: true,
 
   getDefaultProps: () => ({
-    fieldName: "selectField",
-    label: "Select Field Label",
-    columns: "two",
-    values: "value : Value",
+    fieldName: 'selectField',
+    label: 'Select Field Label',
+    columns: 'two',
+    values: 'value : Value',
     isRequired: false,
   }),
 
   sideEditProps: [
     {
-      name: "columns",
-      label: "Columns",
+      name: 'columns',
+      label: 'Columns',
       type: types.SideEditPropType.Select,
       selectOptions: {
         display: types.OptionsDisplay.Radio,
         options: [
-          { value: "one", label: "One" },
-          { value: "two", label: "Two" },
+          { value: 'one', label: 'One' },
+          { value: 'two', label: 'Two' },
         ],
       },
     },
     {
-      name: "fieldName",
+      name: 'fieldName',
       type: types.SideEditPropType.Text,
-      label: "Field Name",
+      label: 'Field Name',
     },
 
     {
-      name: "values",
-      label: "Value : Label",
+      name: 'values',
+      label: 'Value : Label',
       type: types.SideEditPropType.Textarea,
     },
     {
-      name: "isRequired",
+      name: 'isRequired',
       type: types.SideEditPropType.Boolean,
-      label: "Field required",
+      label: 'Field required',
     },
     {
-      name: "requiredError",
+      name: 'requiredError',
       type: types.SideEditPropType.Text,
-      label: "Error required",
+      label: 'Error required',
     },
   ],
-};
+}
 
-export default FormSelect;
+export default FormSelect
