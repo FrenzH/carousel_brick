@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import * as React from "react";
-import { types } from "react-bricks/frontend";
+import { types, Text } from "react-bricks/frontend";
 import { FieldErrorsImpl, UseFormRegister } from "react-hook-form";
 import blockNames from "../../shared/blockNames";
 
@@ -28,20 +28,33 @@ const FormTextarea: types.Brick<FormTextareaProps> = ({
   columns,
 }) => {
   return (
-    <label
+    <div
       className={clsx(
         "px-2 py-1 group block",
         columns === "two" ? "col-span-2" : ""
       )}
     >
-      <span className="block text-gray-600 mb-1 text-sm">
-        {label} {isRequired && <span className="text-red-600">*</span>}
-      </span>
+      <Text
+        propName="label"
+        placeholder="label..."
+        renderBlock={(props) => (
+          <label
+            className="block text-gray-600 mb-1 text-sm"
+            {...props.attributes}
+          >
+            {props.children}
+          </label>
+        )}
+      />
+
+      {isRequired && <span className="text-red-600">*</span>}
 
       <textarea
         className={clsx(
-          "w-full px-4 py-2 border border-gray-300 rounded-lg outline-none focus:ring-1 focus:shadow-sky-200 dark:focus:shadow-sky-900 focus:shadow-lg peer",
-          errors[fieldName] ? "ring-1 ring-red-400" : "ring-sky-500"
+          "w-full px-[15px] py-[10px] border rounded outline-none peer",
+          errors[fieldName]
+            ? "border-red-500"
+            : "border-gray-300 focus:border-sky-500"
         )}
         {...register(fieldName.toLowerCase() || key, {
           required: isRequired,
@@ -53,7 +66,7 @@ const FormTextarea: types.Brick<FormTextareaProps> = ({
           {errors[fieldName]?.type === "required" && requiredError}
         </span>
       )}
-    </label>
+    </div>
   );
 };
 
@@ -89,11 +102,7 @@ FormTextarea.schema = {
       type: types.SideEditPropType.Text,
       label: "Field Name",
     },
-    {
-      name: "label",
-      type: types.SideEditPropType.Text,
-      label: "Label",
-    },
+
     {
       name: "isRequired",
       type: types.SideEditPropType.Boolean,

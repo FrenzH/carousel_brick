@@ -12,7 +12,7 @@ export interface FormInputProps {
   fieldName?: string;
   label?: string;
   isRequired: boolean;
-  inputType: "text" | "number" | "date";
+  inputType: "text" | "number" | "date" | "email";
   key: string;
   pattern?: string;
   patternError?: string;
@@ -54,8 +54,8 @@ const FormInput: types.Brick<FormInputProps> = ({
   return (
     <label
       className={clsx(
-        "px-2 py-1 group block",
-        columns === "two" && "col-span-2"
+        "px-2 py-1 group block col-span-2",
+        columns === "one" && "sm:col-span-1"
       )}
     >
       <>

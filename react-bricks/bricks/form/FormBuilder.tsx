@@ -1,35 +1,53 @@
-import classNames from 'classnames'
-import * as React from 'react'
-import { Repeater, Text, types } from 'react-bricks/frontend'
-import { useForm } from 'react-hook-form'
-import { bgColors } from '../../shared/colors'
-import blockNames from '../../shared/blockNames'
-import Container from '../../shared/components/Container'
-import Section from '../../shared/components/Section'
-import { backgroundColorsEditProps } from '../../shared/LayoutSideProps'
+import classNames from "classnames";
+import * as React from "react";
+import { Repeater, Text, types } from "react-bricks/frontend";
+import { useForm } from "react-hook-form";
+import { bgColors } from "../../shared/colors";
+import blockNames from "../../shared/blockNames";
+import Container from "../../shared/components/Container";
+import Section from "../../shared/components/Section";
+import {
+  backgroundSideGroup,
+  containerSizeEditProps,
+  LayoutProps,
+  paddingBordersSideGroup,
+  sectionDefaults,
+} from "../../shared/LayoutSideProps";
 
-export interface FormBuilderProps {
-  backgroundColor?: { color: string; className: string }
-  buttonPosition: string
+export interface FormBuilderProps extends LayoutProps {
+  buttonPosition: string;
 }
 
 const FormBuilder: types.Brick<FormBuilderProps> = ({
   backgroundColor,
+  borderTop,
+  borderBottom,
+  paddingTop,
+  paddingBottom,
+  width,
   buttonPosition,
 }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm()
+  } = useForm();
 
   return (
     <div>
-      <Section backgroundColor={backgroundColor}>
-        <Container paddingTop="12" paddingBottom="12">
+      <Section
+        backgroundColor={backgroundColor}
+        borderTop={borderTop}
+        borderBottom={borderBottom}
+      >
+        <Container
+          paddingTop={paddingTop}
+          paddingBottom={paddingBottom}
+          size={width} /*p-12px*/
+        >
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="max-w-2xl mx-auto grid grid-cols-2 gap-4"
+            className="max-w-2xl mx-auto grid grid-cols-2 gap-4 px-5"
           >
             <Repeater
               propName="form-elements"
@@ -40,7 +58,7 @@ const FormBuilder: types.Brick<FormBuilderProps> = ({
               renderWrapper={(items) => (
                 <div
                   className={classNames(
-                    'w-full flex space-x-6 col-span-2',
+                    "w-full flex space-x-6 col-span-2",
                     buttonPosition
                   )}
                 >
@@ -52,19 +70,19 @@ const FormBuilder: types.Brick<FormBuilderProps> = ({
         </Container>
       </Section>
     </div>
-  )
-}
-const onSubmit = (values: any) => console.log(values)
+  );
+};
+const onSubmit = (values: any) => console.log(values);
 
 FormBuilder.schema = {
   name: blockNames.FormBuilder,
-  label: 'Form',
-  category: 'contact',
+  label: "Form",
+  category: "contact",
 
   repeaterItems: [
     {
-      name: 'form-elements',
-      positionLabel: 'Form elements',
+      name: "form-elements",
+      positionLabel: "Form elements",
       items: [
         { type: blockNames.FormInput },
         { type: blockNames.FormTextArea },
@@ -74,62 +92,65 @@ FormBuilder.schema = {
       ],
     },
     {
-      name: 'form-buttons',
-      itemLabel: 'Form Buttons',
+      name: "form-buttons",
+      itemLabel: "Form Buttons",
       items: [{ type: blockNames.FormButton }],
     },
   ],
 
   getDefaultProps: () => ({
     backgroundColor: bgColors.WHITE.value,
-    buttonPosition: 'justify-center',
+    buttonPosition: "justify-center",
     formTitle: [
       {
-        type: 'paragraph',
+        type: "paragraph",
         children: [
           {
-            text: 'Form Title',
+            text: "Form Title",
           },
         ],
       },
     ],
-    'form-elements': [
+    "form-elements": [
       {
         type: blockNames.FormInput,
         props: {
-          fieldName: 'inputField',
+          fieldName: "inputField",
           isRequired: false,
-          inputType: 'text',
-          columns: 'two',
-          label: 'Input Field',
-          requiredError: '',
-          pattern: '',
-          patternError: '',
+          inputType: "text",
+          columns: "two",
+          label: "Input Field",
+          requiredError: "",
+          pattern: "",
+          patternError: "",
         },
       },
     ],
   }),
 
   sideEditProps: [
+    backgroundSideGroup,
+    paddingBordersSideGroup,
+    containerSizeEditProps,
     {
-      groupName: 'Layout',
+      groupName: "Layout",
       defaultOpen: false,
-      props: [backgroundColorsEditProps],
+      props: [],
     },
     {
-      name: 'buttonPosition',
-      label: 'button position',
+      name: "buttonPosition",
+      label: "button position",
       type: types.SideEditPropType.Select,
       selectOptions: {
         display: types.OptionsDisplay.Select,
         options: [
-          { value: 'justify-center', label: 'center' },
-          { value: 'justify-start', label: 'start' },
-          { value: 'justify-end', label: 'end' },
+          { value: "justify-center", label: "center" },
+          { value: "justify-start", label: "start" },
+          { value: "justify-end", label: "end" },
         ],
       },
     },
   ],
-}
+};
 
-export default FormBuilder
+export default FormBuilder;
