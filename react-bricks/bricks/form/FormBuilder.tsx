@@ -47,7 +47,7 @@ const FormBuilder: types.Brick<FormBuilderProps> = ({
         >
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="max-w-2xl mx-auto grid grid-cols-2 gap-4 px-5"
+            className="max-w-2xl mx-auto grid grid-cols-2 gap-4 px-6 py-6"
           >
             <Repeater
               propName="form-elements"

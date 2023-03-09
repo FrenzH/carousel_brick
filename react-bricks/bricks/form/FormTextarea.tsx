@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import * as React from "react";
-import { types, Text } from "react-bricks/frontend";
+import { types, Text, Plain } from "react-bricks/frontend";
 import { FieldErrorsImpl, UseFormRegister } from "react-hook-form";
 import blockNames from "../../shared/blockNames";
 
@@ -8,50 +8,62 @@ export interface FormTextareaProps {
   register: UseFormRegister<any>;
   isRequired: boolean;
   fieldName?: string;
-  label: string;
   key: string;
   errors: FieldErrorsImpl<{
     [x: string]: any;
   }>;
   requiredError?: string;
   columns: "one" | "two";
+  label: any;
 }
 
 const FormTextarea: types.Brick<FormTextareaProps> = ({
   fieldName = "text area",
-  label,
   isRequired = true,
   key,
+  label,
   register,
   errors,
   requiredError,
   columns,
 }) => {
+  const labelTextContent =
+    typeof label === "string" ? label : Plain.serialize(label);
   return (
     <div
       className={clsx(
-        "px-2 py-1 group block",
-        columns === "two" ? "col-span-2" : ""
+        "px-2 py-1 group block col-span-2",
+        columns === "one" && "sm:col-span-1"
       )}
     >
-      <Text
-        propName="label"
-        placeholder="label..."
-        renderBlock={(props) => (
-          <label
-            className="block text-gray-600 mb-1 text-sm"
-            {...props.attributes}
-          >
-            {props.children}
-          </label>
+      <label
+        className={clsx(
+          isRequired
+            ? labelTextContent === ""
+              ? "block w-full"
+              : "flex"
+            : "block w-full"
         )}
-      />
+      >
+        <Text
+          propName="label"
+          placeholder="label..."
+          renderBlock={(props) => (
+            <span className="text-gray-600 mb-1 text-sm" {...props.attributes}>
+              {props.children}
+            </span>
+          )}
+        />
 
-      {isRequired && <span className="text-red-600">*</span>}
+        {isRequired &&
+          (labelTextContent === "" ? null : (
+            <span className="text-red-600">*</span>
+          ))}
+      </label>
 
       <textarea
         className={clsx(
-          "w-full px-[15px] py-[10px] border rounded outline-none peer",
+          "w-full px-[15px] py-[10px] caret:sky-500 border rounded outline-none peer",
           errors[fieldName]
             ? "border-red-500"
             : "border-gray-300 focus:border-sky-500"

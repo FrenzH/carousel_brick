@@ -1,6 +1,6 @@
 import * as React from "react";
 import clsx from "clsx";
-import { types } from "react-bricks/frontend";
+import { types, Plain, Text } from "react-bricks/frontend";
 import { FieldErrorsImpl, UseFormRegister } from "react-hook-form";
 import blockNames from "../../shared/blockNames";
 
@@ -10,7 +10,7 @@ export interface FormInputProps {
     [x: string]: any;
   }>;
   fieldName?: string;
-  label?: string;
+  label?: any;
   isRequired: boolean;
   inputType: "text" | "number" | "date" | "email";
   key: string;
@@ -51,45 +51,66 @@ const FormInput: types.Brick<FormInputProps> = ({
   requiredError,
   columns,
 }) => {
+  const labelTextContent =
+    typeof label === "string" ? label : Plain.serialize(label);
   return (
-    <label
+    <div
       className={clsx(
         "px-2 py-1 group block col-span-2",
         columns === "one" && "sm:col-span-1"
       )}
     >
-      <>
-        <span className="block text-gray-600 text-sm mb-1">
-          {label}
-          {isRequired && <span className="text-red-600 ml-[5px]">*</span>}
-        </span>
-        <input
-          type={inputType}
-          className={clsx(
-            "w-full px-[15px] py-[10px] border rounded outline-none peer",
-            errors[fieldName]
-              ? "border-red-500"
-              : "border-gray-300 focus:border-sky-500"
+      <label
+        className={clsx(
+          isRequired
+            ? labelTextContent === ""
+              ? "block w-full"
+              : "flex"
+            : "block w-full"
+        )}
+      >
+        <Text
+          propName="label"
+          placeholder="label..."
+          renderBlock={(props) => (
+            <span className="text-gray-600 mb-1 text-sm" {...props.attributes}>
+              {props.children}
+            </span>
           )}
-          {...register(fieldName?.replace(/\s/g, "").toLowerCase() || key, {
-            required: isRequired,
-            //@ts-ignore
-            valueAsNumber: inputType === "number",
-            //@ts-ignore
-            valueAsDate: inputType === "date",
-            //@ts-ignore
-            pattern: strToRegex(pattern),
-          })}
         />
 
-        {errors[fieldName] && (
-          <span className="block mt-1 text-xs text-red-500 font-bold">
-            {errors[fieldName]?.type === "required" && requiredError}
-            {errors[fieldName]?.type === "pattern" && patternError}
-          </span>
+        {isRequired &&
+          (labelTextContent === "" ? null : (
+            <span className="text-red-600">*</span>
+          ))}
+      </label>
+
+      <input
+        type={inputType}
+        className={clsx(
+          "w-full px-[15px] py-[10px] border rounded outline-none peer",
+          errors[fieldName]
+            ? "border-red-500"
+            : "border-gray-300 focus:border-sky-500"
         )}
-      </>
-    </label>
+        {...register(fieldName?.replace(/\s/g, "").toLowerCase() || key, {
+          required: isRequired,
+          //@ts-ignore
+          valueAsNumber: inputType === "number",
+          //@ts-ignore
+          valueAsDate: inputType === "date",
+          //@ts-ignore
+          pattern: strToRegex(pattern),
+        })}
+      />
+
+      {errors[fieldName] && (
+        <span className="block mt-1 text-xs text-red-500 font-bold">
+          {errors[fieldName]?.type === "required" && requiredError}
+          {errors[fieldName]?.type === "pattern" && patternError}
+        </span>
+      )}
+    </div>
   );
 };
 
@@ -129,11 +150,7 @@ FormInput.schema = {
       type: types.SideEditPropType.Text,
       label: "Field Name",
     },
-    {
-      name: "label",
-      type: types.SideEditPropType.Text,
-      label: "Label",
-    },
+
     {
       name: "inputType",
       type: types.SideEditPropType.Select,
@@ -145,6 +162,7 @@ FormInput.schema = {
           { value: "number", label: "Number" },
           { value: "date", label: "Date" },
           { value: "password", label: "Password" },
+          { value: "email", label: "Email" },
         ],
       },
     },

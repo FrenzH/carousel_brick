@@ -1,13 +1,13 @@
 import clsx from "clsx";
 import * as React from "react";
-import { types } from "react-bricks/frontend";
+import { types, Text, Plain } from "react-bricks/frontend";
 import { FieldErrorsImpl, UseFormRegister } from "react-hook-form";
 import blockNames from "../../shared/blockNames";
 
 export interface FormCheckboxProps {
   register: UseFormRegister<any>;
   fieldName: string;
-  label: string;
+  label: any;
   isRequired: boolean;
   key: string;
   errors: FieldErrorsImpl<{
@@ -27,21 +27,48 @@ const FormCheckbox: types.Brick<FormCheckboxProps> = ({
   key,
   columns,
 }) => {
+  const labelTextContent =
+    typeof label === "string" ? label : Plain.serialize(label);
   return (
-    <div className={columns === "two" ? "col-span-2" : ""}>
-      <label className="px-2 py-1 flex items-center">
-        <input
-          type="checkbox"
-          className="rounded border-gray-300 accent-sky-500 shadow-sm focus:border-sky-300 focus:-0 focus:ring-offset-0"
-          {...register(fieldName?.replace(/\s/g, "") || key, {
-            required: isRequired,
-          })}
+    <div
+      className={clsx(
+        "col-span-2 px-2 py-1 flex",
+        columns === "one" && "sm:col-span-1"
+      )}
+    >
+      <input
+        type="checkbox"
+        className="rounded checked:after:bg-white border-gray-300 accent-sky-500 shadow-sm "
+        {...register(fieldName?.replace(/\s/g, "") || key, {
+          required: isRequired,
+        })}
+      />
+      <label
+        className={clsx(
+          "ml-1",
+          isRequired
+            ? labelTextContent === ""
+              ? "block w-full"
+              : "flex"
+            : "block w-full"
+        )}
+      >
+        <Text
+          propName="label"
+          placeholder="label..."
+          renderBlock={(props) => (
+            <span className="text-gray-600 mb-1 text-sm" {...props.attributes}>
+              {props.children}
+            </span>
+          )}
         />
-        <span className="ml-2 text-gray-600 dark:text-gray-50 font-medium">
-          {label}
-          {isRequired && <span className="text-red-600 ml-2">*</span>}
-        </span>
+
+        {isRequired &&
+          (labelTextContent === "" ? null : (
+            <span className="text-red-600">*</span>
+          ))}
       </label>
+
       <span className="block px-2 mt-2 text-xs text-red-500 font-bold">
         {errors[fieldName]?.type === "required" && requiredError}
       </span>
@@ -80,11 +107,7 @@ FormCheckbox.schema = {
       type: types.SideEditPropType.Text,
       label: "Field Name",
     },
-    {
-      name: "label",
-      type: types.SideEditPropType.Text,
-      label: "Label",
-    },
+
     {
       name: "isRequired",
       type: types.SideEditPropType.Boolean,

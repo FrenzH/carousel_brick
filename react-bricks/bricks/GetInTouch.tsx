@@ -47,7 +47,7 @@ const GetInTouch: types.Brick<GetInTouchProps> = ({
         size={width}
       >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div className="pb-12 lg:pb-20 pt-12 lg:pt-20 sm:text-left lg:px-8 px-5">
+          <div className="pb-12 lg:pb-20 sm:text-left lg:px-8 px-5">
             <TitleSubtitle
               bigCentered={bigCentered}
               extraboldTitle={extraboldTitle}
@@ -116,8 +116,8 @@ GetInTouch.schema = {
     form: [
       {
         buttonPosition: "justify-end",
-        paddingTop: "20",
-        paddingBottom: "20",
+        paddingTop: "0",
+        paddingBottom: "0",
         width: "full",
         "form-elements": [
           {
