@@ -1,5 +1,6 @@
 import * as React from "react";
-import { types } from "react-bricks/frontend";
+import clsx from "clsx";
+import { types, Text, Plain } from "react-bricks/frontend";
 import { UseFormRegister } from "react-hook-form";
 import blockNames from "../../shared/blockNames";
 
@@ -20,15 +21,46 @@ const FormSingleRadio: types.Brick<FormSingleRadioProps> = ({
   isRequired,
   key,
 }) => {
+  console.log(fieldName);
+  const labelTextContent =
+    typeof label === "string" ? label : Plain.serialize(label);
   return (
-    <label className="block">
+    <label htmlFor={fieldName} className="flex items-center">
       <input
-        className="h-4 w-4 border-gray-300 text-sky-500 focus:ring-sky-500"
+        id={fieldName}
+        className="border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 text-sm rounded-full mr-2 text-blue-500 focus:ring-offset-0"
         {...register(fieldName?.replace(/\s/g, "").toLowerCase() || key)}
         type="radio"
         value={value}
       />
-      <span className="ml-2 text-gray-800 dark:text-gray-50">{label}</span>
+      <label
+        className={clsx(
+          "ml-1",
+          isRequired
+            ? labelTextContent === ""
+              ? "block w-full"
+              : "flex gap-x-1"
+            : "block w-full"
+        )}
+      >
+        <Text
+          propName="label"
+          placeholder="label..."
+          renderBlock={(props) => (
+            <span
+              className="ml-2 text-gray-600 dark:text-gray-50 font-medium"
+              {...props.attributes}
+            >
+              {props.children}
+            </span>
+          )}
+        />
+
+        {isRequired &&
+          (labelTextContent === "" ? null : (
+            <span className="text-red-600">*</span>
+          ))}
+      </label>
     </label>
   );
 };
@@ -48,7 +80,6 @@ FormSingleRadio.schema = {
 
   // Sidebar Edit controls for props
   sideEditProps: [
-    { name: "label", type: types.SideEditPropType.Text, label: "Label" },
     { name: "value", type: types.SideEditPropType.Text, label: "Value" },
   ],
 };

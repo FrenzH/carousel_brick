@@ -54,7 +54,8 @@ const FormInput: types.Brick<FormInputProps> = ({
   const labelTextContent =
     typeof label === "string" ? label : Plain.serialize(label);
   return (
-    <div
+    <label
+      htmlFor={fieldName}
       className={clsx(
         "px-2 py-1 group block col-span-2",
         columns === "one" && "sm:col-span-1"
@@ -65,7 +66,7 @@ const FormInput: types.Brick<FormInputProps> = ({
           isRequired
             ? labelTextContent === ""
               ? "block w-full"
-              : "flex"
+              : "flex gap-x-1"
             : "block w-full"
         )}
       >
@@ -86,9 +87,10 @@ const FormInput: types.Brick<FormInputProps> = ({
       </label>
 
       <input
+        id={fieldName}
         type={inputType}
         className={clsx(
-          "w-full px-[15px] py-[10px] border rounded outline-none peer",
+          "w-full px-[15px] py-[10px] border rounded outline-none peer  focus:shadow-sky-200 dark:focus:shadow-sky-900 focus:shadow-lg",
           errors[fieldName]
             ? "border-red-500"
             : "border-gray-300 focus:border-sky-500"
@@ -110,7 +112,7 @@ const FormInput: types.Brick<FormInputProps> = ({
           {errors[fieldName]?.type === "pattern" && patternError}
         </span>
       )}
-    </div>
+    </label>
   );
 };
 

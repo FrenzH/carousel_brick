@@ -30,7 +30,8 @@ const FormTextarea: types.Brick<FormTextareaProps> = ({
   const labelTextContent =
     typeof label === "string" ? label : Plain.serialize(label);
   return (
-    <div
+    <label
+      htmlFor={fieldName}
       className={clsx(
         "px-2 py-1 group block col-span-2",
         columns === "one" && "sm:col-span-1"
@@ -41,7 +42,7 @@ const FormTextarea: types.Brick<FormTextareaProps> = ({
           isRequired
             ? labelTextContent === ""
               ? "block w-full"
-              : "flex"
+              : "flex gap-x-1"
             : "block w-full"
         )}
       >
@@ -62,8 +63,9 @@ const FormTextarea: types.Brick<FormTextareaProps> = ({
       </label>
 
       <textarea
+        id={requiredError}
         className={clsx(
-          "w-full px-[15px] py-[10px] caret:sky-500 border rounded outline-none peer",
+          "w-full px-[15px] py-[10px] caret:sky-500 border rounded outline-none peer focus:shadow-sky-200 dark:focus:shadow-sky-900 focus:shadow-lg",
           errors[fieldName]
             ? "border-red-500"
             : "border-gray-300 focus:border-sky-500"
@@ -78,7 +80,7 @@ const FormTextarea: types.Brick<FormTextareaProps> = ({
           {errors[fieldName]?.type === "required" && requiredError}
         </span>
       )}
-    </div>
+    </label>
   );
 };
 

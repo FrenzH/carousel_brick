@@ -115,11 +115,102 @@ FormBuilder.schema = {
       {
         type: blockNames.FormInput,
         props: {
-          fieldName: "inputField",
+          fieldName: "name",
           isRequired: false,
           inputType: "text",
+          columns: "one",
+          label: "Name",
+          requiredError: "",
+          pattern: "",
+          patternError: "",
+        },
+      },
+      {
+        type: blockNames.FormInput,
+        props: {
+          fieldName: "surname",
+          isRequired: false,
+          inputType: "text",
+          columns: "one",
+          label: "Surname",
+          requiredError: "",
+          pattern: "",
+          patternError: "",
+        },
+      },
+      {
+        type: blockNames.FormInput,
+        props: {
+          fieldName: "email",
+          isRequired: false,
+          inputType: "email",
           columns: "two",
-          label: "Input Field",
+          label: "Email",
+          requiredError: "",
+          pattern: "",
+          patternError: "",
+        },
+      },
+      {
+        type: blockNames.FormSelect,
+        props: {
+          fieldName: "radio",
+          isRequired: false,
+          columns: "two",
+          label: "Select",
+          values: "value1:value\nvalue2:value2\nvalue3:value3",
+          requiredError: "",
+          pattern: "",
+          patternError: "",
+        },
+      },
+      {
+        type: blockNames.FormTextArea,
+        props: {
+          fieldName: "message",
+          isRequired: false,
+
+          columns: "two",
+          label: "Message",
+          requiredError: "",
+          pattern: "",
+          patternError: "",
+        },
+      },
+      {
+        type: blockNames.FormCheckbox,
+        props: {
+          fieldName: "value",
+          isRequired: false,
+
+          columns: "one",
+          label: "Value",
+          requiredError: "",
+          pattern: "",
+          patternError: "",
+        },
+      },
+      {
+        type: blockNames.FormCheckbox,
+        props: {
+          fieldName: "value1",
+          isRequired: false,
+
+          columns: "one",
+          label: "Value1",
+          requiredError: "",
+          pattern: "",
+          patternError: "",
+        },
+      },
+      {
+        type: blockNames.FormRadiobuttons,
+        props: {
+          fieldName: "radio",
+          isRequired: false,
+
+          columns: "one",
+          label: "Radio",
           requiredError: "",
           pattern: "",
           patternError: "",

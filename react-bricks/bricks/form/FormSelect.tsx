@@ -1,5 +1,5 @@
 import * as React from "react";
-import { types } from "react-bricks/frontend";
+import { types, Plain, Text } from "react-bricks/frontend";
 import { FieldErrorsImpl, UseFormRegister } from "react-hook-form";
 import clsx from "clsx";
 import blockNames from "../../shared/blockNames";
@@ -29,17 +29,40 @@ const FormSelect: types.Brick<FormSelectProps> = ({
   requiredError,
   columns,
 }) => {
+  const labelTextContent =
+    typeof label === "string" ? label : Plain.serialize(label);
   return (
     <label
+      htmlFor={fieldName}
       className={clsx(
         "px-2 py-1 group block",
         columns === "two" && "col-span-2"
       )}
     >
-      <span className="block text-gray-400 group-hover:text-sky-600 dark:group-hover:text-sky-300 font-medium uppercase tracking-widest text-sm peer-focus:text-sky-700">
-        {label}
-        {isRequired && <span className="text-red-600 ml-2">*</span>}
-      </span>
+      <label
+        className={clsx(
+          isRequired
+            ? labelTextContent === ""
+              ? "block w-full"
+              : "flex gap-x-1"
+            : "block w-full"
+        )}
+      >
+        <Text
+          propName="label"
+          placeholder="label..."
+          renderBlock={(props) => (
+            <span className="text-gray-600 mb-1 text-sm" {...props.attributes}>
+              {props.children}
+            </span>
+          )}
+        />
+
+        {isRequired &&
+          (labelTextContent === "" ? null : (
+            <span className="text-red-600">*</span>
+          ))}
+      </label>
       <select
         className="block w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg outline-none focus:ring-1 ring-sky-500 focus:shadow-sky-200 dark:focus:shadow-sky-900 focus:shadow-lg"
         {...register(fieldName?.replace(/\s/g, "").toLowerCase() || key)}
@@ -101,11 +124,7 @@ FormSelect.schema = {
       type: types.SideEditPropType.Text,
       label: "Field Name",
     },
-    {
-      name: "label",
-      type: types.SideEditPropType.Text,
-      label: "Label",
-    },
+
     {
       name: "values",
       label: "Value : Label",

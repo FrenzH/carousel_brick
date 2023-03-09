@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import * as React from "react";
-import { Repeater, types } from "react-bricks/frontend";
+import { Repeater, types, Plain, Text } from "react-bricks/frontend";
 import { UseFormRegister } from "react-hook-form";
 import blockNames from "../../shared/blockNames";
 
@@ -19,13 +19,43 @@ const FormRadiobuttons: types.Brick<FormRadiobuttonsProps> = ({
   isRequired,
   columns,
 }) => {
+  const labelTextContent =
+    typeof fieldLabel === "string" ? fieldLabel : Plain.serialize(fieldLabel);
   return (
     <div
-      className={clsx("w-full px-2 py-1", columns === "two" && "col-span-2")}
+      className={clsx(
+        "w-full px-2 py-1 col-span-2",
+        columns === "one" && "sm:col-span-1"
+      )}
     >
-      <span className="block text-gray-400 group-hover:text-indigo-600 font-medium uppercase tracking-widest text-sm peer-focus:text-indigo-700 mb-2">
-        {fieldLabel}
-      </span>
+      <label
+        className={clsx(
+          "mb-1",
+          isRequired
+            ? labelTextContent === ""
+              ? "block w-full"
+              : "flex gap-x-1"
+            : "block w-full"
+        )}
+      >
+        <Text
+          propName="fieldLabel"
+          placeholder="label..."
+          renderBlock={(props) => (
+            <span
+              className=" text-gray-400 font-medium uppercase tracking-widest text-sm"
+              {...props.attributes}
+            >
+              {props.children}
+            </span>
+          )}
+        />
+
+        {isRequired &&
+          (labelTextContent === "" ? null : (
+            <span className="text-red-600">*</span>
+          ))}
+      </label>
       <Repeater
         propName="radiobuttons"
         itemProps={{
@@ -85,11 +115,7 @@ FormRadiobuttons.schema = {
       type: types.SideEditPropType.Text,
       label: "Field Name",
     },
-    {
-      name: "fieldLabel",
-      type: types.SideEditPropType.Text,
-      label: "Field label",
-    },
+
     {
       name: "isRequired",
       type: types.SideEditPropType.Boolean,

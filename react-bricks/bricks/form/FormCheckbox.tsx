@@ -7,7 +7,7 @@ import blockNames from "../../shared/blockNames";
 export interface FormCheckboxProps {
   register: UseFormRegister<any>;
   fieldName: string;
-  label: any;
+  label: string;
   isRequired: boolean;
   key: string;
   errors: FieldErrorsImpl<{
@@ -32,13 +32,13 @@ const FormCheckbox: types.Brick<FormCheckboxProps> = ({
   return (
     <div
       className={clsx(
-        "col-span-2 px-2 py-1 flex",
+        "col-span-2 px-2 py-1 flex items-center",
         columns === "one" && "sm:col-span-1"
       )}
     >
       <input
         type="checkbox"
-        className="rounded checked:after:bg-white border-gray-300 accent-sky-500 shadow-sm "
+        className="border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 text-sm rounded-sm mr-2 text-blue-500 focus:ring-offset-0"
         {...register(fieldName?.replace(/\s/g, "") || key, {
           required: isRequired,
         })}
@@ -49,7 +49,7 @@ const FormCheckbox: types.Brick<FormCheckboxProps> = ({
           isRequired
             ? labelTextContent === ""
               ? "block w-full"
-              : "flex"
+              : "flex gap-x-1"
             : "block w-full"
         )}
       >
@@ -57,7 +57,10 @@ const FormCheckbox: types.Brick<FormCheckboxProps> = ({
           propName="label"
           placeholder="label..."
           renderBlock={(props) => (
-            <span className="text-gray-600 mb-1 text-sm" {...props.attributes}>
+            <span
+              className="ml-2 text-gray-600 dark:text-gray-50 font-medium"
+              {...props.attributes}
+            >
               {props.children}
             </span>
           )}
