@@ -26,19 +26,17 @@ const FormSingleRadio: types.Brick<FormSingleRadioProps> = ({
   const labelTextContent =
     typeof label === "string" ? label : Plain.serialize(label);
   const { isAdmin } = useAdminContext();
-  fieldName += index.toString();
 
-  console.log(fieldName);
   return (
     <div className="flex items-center">
       <input
-        id={fieldName}
+        id={value}
         className="border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 text-sm rounded-full mr-2 text-blue-500 focus:ring-offset-0"
         {...register(fieldName?.replace(/\s/g, "").toLowerCase() || key)}
         type="radio"
         value={value}
       />
-      <label htmlFor={isAdmin ? "" : fieldName}>
+      <label htmlFor={isAdmin ? "" : value}>
         <span
           className={classNames(
             "ml-1",
