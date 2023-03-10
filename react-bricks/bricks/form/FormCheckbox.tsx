@@ -1,9 +1,9 @@
-import clsx from "clsx";
+import classNames from "classnames";
 import * as React from "react";
 import { types, Text, Plain } from "react-bricks/frontend";
 import { FieldErrorsImpl, UseFormRegister } from "react-hook-form";
 import blockNames from "../../shared/blockNames";
-
+import { useAdminContext } from "react-bricks/frontend";
 export interface FormCheckboxProps {
   register: UseFormRegister<any>;
   fieldName: string;
@@ -29,14 +29,16 @@ const FormCheckbox: types.Brick<FormCheckboxProps> = ({
 }) => {
   const labelTextContent =
     typeof label === "string" ? label : Plain.serialize(label);
+  const { isAdmin } = useAdminContext();
   return (
     <div
-      className={clsx(
+      className={classNames(
         "col-span-2 px-2 py-1 flex items-center",
         columns === "one" && "sm:col-span-1"
       )}
     >
       <input
+        id={fieldName}
         type="checkbox"
         className="border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 text-sm rounded-sm mr-2 text-blue-500 focus:ring-offset-0"
         {...register(fieldName?.replace(/\s/g, "") || key, {
@@ -44,7 +46,8 @@ const FormCheckbox: types.Brick<FormCheckboxProps> = ({
         })}
       />
       <label
-        className={clsx(
+        htmlFor={isAdmin ? "" : fieldName}
+        className={classNames(
           "ml-1",
           isRequired
             ? labelTextContent === ""

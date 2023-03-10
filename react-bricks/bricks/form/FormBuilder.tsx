@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import * as React from "react";
-import { Repeater, Text, types } from "react-bricks/frontend";
+import { Repeater, types } from "react-bricks/frontend";
 import { useForm } from "react-hook-form";
 import { bgColors } from "../../shared/colors";
 import blockNames from "../../shared/blockNames";
@@ -99,6 +99,7 @@ FormBuilder.schema = {
   ],
 
   getDefaultProps: () => ({
+    ...sectionDefaults,
     backgroundColor: bgColors.WHITE.value,
     buttonPosition: "justify-center",
     formTitle: [

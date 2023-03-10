@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import classNames from "classnames";
 import * as React from "react";
 import { Repeater, types, Plain, Text } from "react-bricks/frontend";
 import { UseFormRegister } from "react-hook-form";
@@ -23,13 +23,13 @@ const FormRadiobuttons: types.Brick<FormRadiobuttonsProps> = ({
     typeof fieldLabel === "string" ? fieldLabel : Plain.serialize(fieldLabel);
   return (
     <div
-      className={clsx(
+      className={classNames(
         "w-full px-2 py-1 col-span-2",
         columns === "one" && "sm:col-span-1"
       )}
     >
-      <label
-        className={clsx(
+      <div
+        className={classNames(
           "mb-1",
           isRequired
             ? labelTextContent === ""
@@ -55,7 +55,7 @@ const FormRadiobuttons: types.Brick<FormRadiobuttonsProps> = ({
           (labelTextContent === "" ? null : (
             <span className="text-red-600">*</span>
           ))}
-      </label>
+      </div>
       <Repeater
         propName="radiobuttons"
         itemProps={{
