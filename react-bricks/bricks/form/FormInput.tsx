@@ -4,6 +4,7 @@ import { types, Plain, Text } from "react-bricks/frontend";
 import { FieldErrorsImpl, UseFormRegister } from "react-hook-form";
 import blockNames from "../../shared/blockNames";
 import { useAdminContext } from "react-bricks/frontend";
+import { textColors } from "../../shared/colors";
 export interface FormInputProps {
   register: UseFormRegister<any>;
   errors: FieldErrorsImpl<{
@@ -76,7 +77,7 @@ const FormInput: types.Brick<FormInputProps> = ({
             placeholder="label..."
             renderBlock={(props) => (
               <span
-                className="text-gray-600 mb-1 text-sm"
+                className={classNames(textColors.GRAY_600, "mb-1 text-sm")}
                 {...props.attributes}
               >
                 {props.children}

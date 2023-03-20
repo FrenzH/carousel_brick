@@ -1,9 +1,10 @@
 import * as React from "react";
 import classNames from "classnames";
-import { types, Text, Plain } from "react-bricks/frontend";
+import { types, Text } from "react-bricks/frontend";
 import { UseFormRegister } from "react-hook-form";
 import blockNames from "../../shared/blockNames";
 import { useAdminContext } from "react-bricks/frontend";
+import { textColors } from "../../shared/colors";
 export interface FormSingleRadioProps {
   index: number;
   register: UseFormRegister<any>;
@@ -15,16 +16,13 @@ export interface FormSingleRadioProps {
 }
 
 const FormSingleRadio: types.Brick<FormSingleRadioProps> = ({
-  index,
   register,
   fieldName,
   label,
   value,
-  isRequired,
+
   key,
 }) => {
-  const labelTextContent =
-    typeof label === "string" ? label : Plain.serialize(label);
   const { isAdmin } = useAdminContext();
 
   return (
@@ -37,33 +35,19 @@ const FormSingleRadio: types.Brick<FormSingleRadioProps> = ({
         value={value}
       />
       <label htmlFor={isAdmin ? "" : value}>
-        <span
-          className={classNames(
-            "ml-1",
-            isRequired
-              ? labelTextContent === ""
-                ? "block w-full"
-                : "flex gap-x-1"
-              : "block w-full"
-          )}
-        >
+        <span className={classNames("ml-2 block w-full min-w-[70px]")}>
           <Text
             propName="label"
             placeholder="label..."
             renderBlock={(props) => (
               <span
-                className="ml-2 text-gray-600 dark:text-gray-50 font-medium"
+                className={classNames(textColors.GRAY_600)}
                 {...props.attributes}
               >
                 {props.children}
               </span>
             )}
           />
-
-          {isRequired &&
-            (labelTextContent === "" ? null : (
-              <span className="text-red-600">*</span>
-            ))}
         </span>
       </label>
     </div>

@@ -3,6 +3,7 @@ import * as React from "react";
 import { Repeater, types, Plain, Text } from "react-bricks/frontend";
 import { UseFormRegister } from "react-hook-form";
 import blockNames from "../../shared/blockNames";
+import { textColors } from "../../shared/colors";
 
 export interface FormRadiobuttonsProps {
   register?: UseFormRegister<any>;
@@ -43,7 +44,7 @@ const FormRadiobuttons: types.Brick<FormRadiobuttonsProps> = ({
           placeholder="label..."
           renderBlock={(props) => (
             <span
-              className=" text-gray-400 font-medium uppercase tracking-widest text-sm"
+              className={classNames(textColors.GRAY_600, "mb-1 text-sm")}
               {...props.attributes}
             >
               {props.children}

@@ -4,6 +4,7 @@ import { FieldErrorsImpl, UseFormRegister } from "react-hook-form";
 import classNames from "classnames";
 import blockNames from "../../shared/blockNames";
 import { useAdminContext } from "react-bricks/frontend";
+import { textColors } from "../../shared/colors";
 
 export interface FormSelectProps {
   register: UseFormRegister<any>;
@@ -55,7 +56,7 @@ const FormSelect: types.Brick<FormSelectProps> = ({
             placeholder="label..."
             renderBlock={(props) => (
               <span
-                className="text-gray-600 mb-1 text-sm"
+                className={classNames(textColors.GRAY_600, " mb-1 text-sm")}
                 {...props.attributes}
               >
                 {props.children}

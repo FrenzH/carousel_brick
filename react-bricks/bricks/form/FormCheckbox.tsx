@@ -4,6 +4,7 @@ import { types, Text, Plain } from "react-bricks/frontend";
 import { FieldErrorsImpl, UseFormRegister } from "react-hook-form";
 import blockNames from "../../shared/blockNames";
 import { useAdminContext } from "react-bricks/frontend";
+import { textColors } from "../../shared/colors";
 export interface FormCheckboxProps {
   register: UseFormRegister<any>;
   fieldName: string;
@@ -61,7 +62,7 @@ const FormCheckbox: types.Brick<FormCheckboxProps> = ({
           placeholder="label..."
           renderBlock={(props) => (
             <span
-              className="ml-2 text-gray-600 dark:text-gray-50 font-medium"
+              className={classNames(textColors.GRAY_600, "mb-1")}
               {...props.attributes}
             >
               {props.children}
