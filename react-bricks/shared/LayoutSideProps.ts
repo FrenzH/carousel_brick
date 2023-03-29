@@ -6,6 +6,7 @@ import {
   buttonColors,
   gradients,
   pricingColors,
+  tailwindColors
 } from './colors'
 import { Padding, Size } from './components/Container'
 import { Border } from './components/Section'
@@ -156,7 +157,7 @@ export const sectionBordersEditProps: types.ISideEditProp[] = [
 ]
 
 export const sectionDefaults = {
-  backgroundColor: bgColors.WHITE,
+  backgroundColor: bgColors.WHITE.value,
   paddingTop: '16',
   paddingBottom: '16',
   borderTop: 'none',
@@ -397,4 +398,47 @@ export const containerWidthSideGroupWithFull: types.ISideGroup = {
   groupName: 'Container width',
   defaultOpen: false,
   props: [containerSizeEditPropsWithFull],
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+export const defaultReactBricksPropsColor = {
+  name: 'propsColor',
+  label: 'Color',
+  type: types.SideEditPropType.Select,
+  shouldRefreshText: true,
+  selectOptions: {
+    display: types.OptionsDisplay.Color,
+    options: [
+      tailwindColors.GRAY,
+      tailwindColors.RED,
+      tailwindColors.ORANGE,
+      tailwindColors.AMBER,
+      tailwindColors.YELLOW,
+      tailwindColors.LIME,
+      tailwindColors.GREEN,
+      tailwindColors.EMERALD,
+      tailwindColors.TEAL,
+      tailwindColors.CYAN,
+      tailwindColors.SKY,
+      tailwindColors.BLUE,
+      tailwindColors.INDIGO,
+      tailwindColors.VIOLET,
+      tailwindColors.PURPLE,
+      tailwindColors.FUCHSIA,
+      tailwindColors.PINK,
+      tailwindColors.ROSE,
+    ],
+  },
+
 }
